@@ -28,6 +28,7 @@ img{max-width:100%}
   --tag-bg:#1F4A3A; --tag-fg:#F7F3E8; --tag-rule:#C99A2E; --plate:#E3C46F; --plate-fg:#1A1F1C;
   --river:#B5CFDF; --map-bg:#E3E8E1; --map-ink:#7F8984;
   --m1:#F2C500; --m2:#E41F18; --m3:#005CA5; --m4:#4CA22F;
+  --sky:#D7E4EC; --stone:#F4F0E6; --stone-2:#CFC6B3; --shade:#A99F8B; --roof:#8E4535; --dome:#4E8C76; --hill:#8FAE8A; --night:#1F3646; --star:#F3D58A;
   --f-display:"Noto Serif SC","Songti SC",serif;
   --f-body:"Noto Sans SC","PingFang SC","Microsoft YaHei",system-ui,sans-serif;
   --f-sign:"Barlow Condensed","Arial Narrow","Roboto Condensed",sans-serif;
@@ -36,12 +37,14 @@ img{max-width:100%}
   --bg:#121614; --surface:#1B201D; --surface-2:#262C28; --ink:#E9EEEA; --muted:#A1AAA4; --line:#313833;
   --red:#F07A5C; --blue:#7FB3DA; --ok:#63C48E; --warn:#E5A445; --bad:#FF7B72;
   --tag-bg:#25594A; --tag-fg:#F7F3E8; --tag-rule:#D9AE4A; --plate:#D9B95C; --plate-fg:#1A1F1C;
-  --river:#1F384A; --map-bg:#171C19; --map-ink:#78827C; color-scheme:dark}}
+  --river:#1F384A; --map-bg:#171C19; --map-ink:#78827C;
+  --sky:#1E2D37; --stone:#D8D1C2; --stone-2:#A79E8B; --shade:#6E6658; --roof:#9B5240; --dome:#4F8E78; --hill:#3E5A44; --night:#0E1A22; --star:#E9C870; color-scheme:dark}}
 :root[data-theme="dark"]{
   --bg:#121614; --surface:#1B201D; --surface-2:#262C28; --ink:#E9EEEA; --muted:#A1AAA4; --line:#313833;
   --red:#F07A5C; --blue:#7FB3DA; --ok:#63C48E; --warn:#E5A445; --bad:#FF7B72;
   --tag-bg:#25594A; --tag-fg:#F7F3E8; --tag-rule:#D9AE4A; --plate:#D9B95C; --plate-fg:#1A1F1C;
-  --river:#1F384A; --map-bg:#171C19; --map-ink:#78827C; color-scheme:dark}
+  --river:#1F384A; --map-bg:#171C19; --map-ink:#78827C;
+  --sky:#1E2D37; --stone:#D8D1C2; --stone-2:#A79E8B; --shade:#6E6658; --roof:#9B5240; --dome:#4F8E78; --hill:#3E5A44; --night:#0E1A22; --star:#E9C870; color-scheme:dark}
 
 *{box-sizing:border-box}
 body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.65;-webkit-text-size-adjust:100%}
@@ -216,6 +219,30 @@ nav.tabs{position:fixed;left:0;right:0;bottom:0;z-index:25;background:var(--surf
 .tabbtn[aria-selected="true"]{color:var(--red);font-weight:700}
 .tabbtn.center span.ring{display:grid;place-items:center;width:40px;height:30px;border-radius:10px;background:var(--surface-2)}
 .tabbtn.center[aria-selected="true"] span.ring{background:var(--red);color:var(--surface)}
+
+/* top 5 route + top 10 */
+.route-head{display:flex;flex-direction:column;gap:8px}
+.route-sum{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13px;color:var(--muted)}
+.route-sum b{font-family:var(--f-sign);font-size:18px;color:var(--ink);font-variant-numeric:tabular-nums}
+.illus{display:block;width:100%;height:auto;aspect-ratio:16/9;border-radius:12px;max-width:100%}
+.stop-card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:12px 12px 16px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.stop-title{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding-inline:4px}
+.stop-no{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--red);color:var(--surface);font-family:var(--f-sign);font-weight:700;font-size:17px;flex:none}
+.stop-body{display:flex;flex-direction:column;gap:10px;padding-inline:4px}
+.stop-time{font-family:var(--f-sign);font-weight:600;font-size:15px;color:var(--blue);letter-spacing:.02em}
+.leg{margin-left:19px;border-left:2px dashed var(--line);padding:10px 0 10px 18px;font-size:13.5px;color:var(--muted);display:flex;flex-direction:column;gap:2px}
+.leg b{color:var(--ink);font-family:var(--f-sign);font-size:15px;font-variant-numeric:tabular-nums}
+.top10{display:flex;flex-direction:column;gap:10px}
+.t10{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px;display:grid;grid-template-columns:2.4em 1fr;gap:4px 12px;min-width:0}
+.t10 .rk{font-family:var(--f-sign);font-weight:700;font-size:30px;line-height:1;color:var(--red);font-variant-numeric:tabular-nums;grid-row:span 2}
+.t10 .rk.low{color:var(--muted)}
+.t10 .hd{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;min-width:0}
+.t10 h3{font-size:16px;font-family:var(--f-body);font-weight:700}
+.t10 .st{color:var(--tag-rule);letter-spacing:.12em;font-size:14px}
+.t10 .st i{font-style:normal;color:var(--line)}
+.t10 .bd{display:flex;flex-direction:column;gap:8px;min-width:0}
+.trap{border-left:3px solid var(--bad);padding:4px 10px;background:color-mix(in srgb,var(--bad) 7%,var(--surface));border-radius:0 8px 8px 0;font-size:14px}
+.trap b{color:var(--bad)}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
@@ -557,7 +584,7 @@ nav.tabs{position:fixed;left:0;right:0;bottom:0;z-index:25;background:var(--surf
 "use strict";
 /* ---------- data ---------- */
 const FOOD_TYPES = {all:"全部推荐",hun:"匈牙利家常菜",snack:"lángos 和小吃",cafe:"咖啡馆",asian:"想吃中餐亚洲菜",fine:"吃顿好的",hype:"小红书热门值不值"};
-const SIGHT_TYPES = {must:"必去",bath:"温泉",more:"顺路看",season:"圣诞季",trip:"一日游",photo:"拍照机位",plan:"行程建议"};
+const SIGHT_TYPES = {top5:"Top 5 一日路线",top10:"Top 10 排雷",must:"必去",bath:"温泉",more:"顺路看",season:"圣诞季",trip:"一日游",photo:"拍照机位",plan:"行程建议"};
 const CITY = "Budapest";
 
 const P = [
@@ -679,6 +706,9 @@ const SIGHTS = [
  price:"—",hours:"—",best:"天气好的半天",go:"Batthyány tér 坐 H5 郊区火车约 40 分钟；出市界要另买延伸段车票",tip:"彩色小街、河边散步，适合半天。"},
 {id:"eger",kind:"sight",type:"trip",name:"Eger",zh:"埃格尔",area:"匈牙利北部",street:"",no:"",lat:47.9025,lng:20.3772,q:"Eger",
  price:"—",hours:"—",best:"住一晚更从容",go:"火车约 2 小时",tip:"城堡加葡萄酒谷（Szépasszony-völgy），公牛血红酒的产地。"},
+// 排雷用
+{id:"vaci",kind:"sight",type:"x",name:"Váci utca",zh:"瓦茨街步行街",area:"五区 V",street:"",no:"",lat:47.4935,lng:19.0535,q:"Váci utca Budapest",price:"免费",hours:"全天",best:"只逛不吃",go:"地铁 M1 Vörösmarty tér",tip:"拉客餐厅集中的地方。"},
+{id:"gellertbath",kind:"sight",type:"x",name:"Gellért fürdő",zh:"盖勒特温泉（关闭中）",area:"十一区 XI",street:"Kelenhegyi út",no:"4",lat:47.4837,lng:19.0522,q:"Gellért Thermal Bath",price:"—",hours:"整修关闭到 2028 年",best:"—",go:"—",tip:"改去塞切尼或鲁达什。"},
 // 交通点
 {id:"deak",kind:"transit",type:"transit",name:"Deák Ferenc tér",zh:"Deák 广场（三条地铁换乘）",area:"五区 V",street:"",no:"",lat:47.4979,lng:19.0547,q:"Deák Ferenc tér"},
 {id:"keleti",kind:"transit",type:"transit",name:"Keleti pályaudvar",zh:"东站",area:"八区 VIII",street:"",no:"",lat:47.5003,lng:19.0839,q:"Budapest Keleti"},
@@ -742,7 +772,7 @@ const store = {
 const EXAMPLE = {lat:47.4979,lng:19.0547,label:"Deák 广场附近",example:true};
 let hotel = store.get("bud-hotel", null) || EXAMPLE;
 let favs = new Set(store.get("bud-favs", []));
-const S = {tab:"food",food:"all",sight:"must",dist:"all",foodNear:false,sightNear:false,sel:null,pending:null,q:""};
+const S = {tab:"food",food:"all",sight:"top5",dist:"all",foodNear:false,sightNear:false,sel:null,pending:null,q:""};
 S.tab = store.get("bud-tab","food");
 const h0 = (location.hash||"").replace("#","");
 if (["food","sights","dist","go","notes"].includes(h0)) S.tab = h0;
@@ -845,7 +875,9 @@ function renderFood(){
 function renderSights(){
  chipRow($("#sightChips"),SIGHT_TYPES,S.sight,"sight");
  $("#sightNear").checked=S.sightNear;
- $("#sightNearWrap").hidden=S.sight==="photo"||S.sight==="plan";
+ $("#sightNearWrap").hidden=["photo","plan","top5","top10"].includes(S.sight);
+ if(S.sight==="top5"){renderTop5();return;}
+ if(S.sight==="top10"){renderTop10();return;}
  if(S.sight==="photo"){
   $("#sightList").innerHTML=`<p class="lead">人少又好看的机位优先。点名字看离酒店多远。</p><div class="rows">`+PHOTO.map(([t,x,id])=>{const p=BY[id],d=hav(hotel,p),a=advise(d);
    return `<button class="row ${a.cls}" type="button" data-onmap="${id}"><span class="rn">${esc(t)}<small style="text-transform:none;font-family:var(--f-body);letter-spacing:0">${esc(x)}</small></span><span class="rd">${fmtD(d)}<small>${a.label}</small></span></button>`}).join("")+`</div>`;
@@ -866,6 +898,153 @@ function renderSights(){
  }
  const list=P.filter(p=>p.kind==="sight"&&p.type===S.sight);
  $("#sightList").innerHTML=sortNear(list,S.sightNear).map(sightCard).join("");
+}
+
+/* ---------- illustrations (original drawings) ---------- */
+function svgWrap(label,inner){return `<svg class="illus" viewBox="0 0 360 202" role="img" aria-label="${label}插画" preserveAspectRatio="xMidYMid slice">${inner}</svg>`;}
+function rep(n,f){let o="";for(let i=0;i<n;i++)o+=f(i);return o;}
+function artParliament(){
+ let g=`<rect width="360" height="202" fill="var(--sky)"/><circle cx="300" cy="38" r="16" fill="var(--star)" opacity=".8"/>`;
+ g+=`<rect y="150" width="360" height="52" fill="var(--river)"/>`;
+ g+=`<rect x="18" y="96" width="324" height="50" fill="var(--stone)"/><rect x="18" y="90" width="324" height="8" fill="var(--roof)"/>`;
+ g+=rep(36,i=>{const x=26+i*9;return `<path d="M${x} 118v-9l2-3 2 3v9z" fill="var(--shade)"/><path d="M${x} 136v-9l2-3 2 3v9z" fill="var(--shade)"/>`;});
+ g+=rep(21,i=>{const x=20+i*16;return `<path d="M${x} 91l2-9 2 9z" fill="var(--stone-2)"/>`;});
+ g+=`<rect x="146" y="70" width="68" height="76" fill="var(--stone)"/><rect x="146" y="66" width="68" height="6" fill="var(--roof)"/>`;
+ g+=`<rect x="160" y="46" width="40" height="24" fill="var(--stone-2)"/>`+rep(5,i=>`<rect x="${164+i*7}" y="51" width="3" height="14" fill="var(--shade)"/>`).replace(/^/,'');
+ g+=`<path d="M156 48Q180 6 204 48z" fill="var(--roof)"/><path d="M178 20h4l-2-18z" fill="var(--roof)"/><circle cx="180" cy="22" r="3" fill="var(--star)"/>`;
+ [[132,48],[222,48],[60,70],[294,70],[22,78],[332,78]].forEach(([x,y])=>{g+=`<rect x="${x}" y="${y}" width="8" height="${146-y}" fill="var(--stone)"/><path d="M${x-1} ${y}l5-18 5 18z" fill="var(--roof)"/>`;});
+ g+=`<rect y="146" width="360" height="5" fill="var(--stone-2)"/>`;
+ g+=rep(9,i=>`<rect x="${30+i*36}" y="${160+(i%3)*10}" width="${18+(i%2)*10}" height="2" rx="1" fill="var(--stone)" opacity=".55"/>`);
+ return svgWrap("国会大厦",g);
+}
+function artBastion(){
+ let g=`<defs><pattern id="ztile" width="10" height="10" patternUnits="userSpaceOnUse"><rect width="10" height="10" fill="var(--dome)"/><path d="M5 0l5 5-5 5-5-5z" fill="var(--tag-rule)"/><path d="M5 3l2 2-2 2-2-2z" fill="var(--roof)"/></pattern></defs>`;
+ g+=`<rect width="360" height="202" fill="var(--sky)"/>`;
+ g+=`<path d="M210 112l30-34h80l30 34z" fill="url(#ztile)"/><rect x="214" y="112" width="132" height="50" fill="var(--stone-2)"/>`;
+ g+=`<rect x="262" y="40" width="26" height="74" fill="var(--stone-2)"/><path d="M258 42l17-40 17 40z" fill="url(#ztile)"/>`+rep(3,i=>`<path d="M${268+i*0} ${56+i*18}v-8a3 3 0 0 1 6 0v8z" fill="var(--shade)"/>`);
+ g+=`<rect y="128" width="360" height="74" fill="var(--stone)"/>`;
+ g+=rep(9,i=>{const x=14+i*38;return `<path d="M${x} 176v-22a12 12 0 0 1 24 0v22z" fill="var(--shade)"/>`;});
+ g+=`<rect y="176" width="360" height="26" fill="var(--stone-2)"/><rect y="126" width="360" height="4" fill="var(--stone-2)"/>`;
+ [[34,30,96,52],[118,40,84,24],[196,26,104,62]].forEach(([x,w,y,top])=>{g+=`<rect x="${x}" y="${y}" width="${w}" height="${130-y}" fill="var(--stone)"/><path d="M${x-3} ${y}l${w/2+3} ${top-y} ${w/2+3} ${y-top}z" fill="var(--stone-2)"/><path d="M${x+w/2-3} ${y+18}v-7a3 3 0 0 1 6 0v7z" fill="var(--shade)"/><rect x="${x}" y="${y+28}" width="${w}" height="3" fill="var(--stone-2)"/>`;});
+ return svgWrap("渔人堡和马加什教堂",g);
+}
+function artChain(){
+ let g=`<rect width="360" height="202" fill="var(--night)"/>`+rep(14,i=>`<circle cx="${(i*53)%350+6}" cy="${(i*29)%60+8}" r="${i%3?1:1.6}" fill="var(--star)" opacity=".8"/>`);
+ g+=`<path d="M0 98Q60 62 130 72T240 88V112H0z" fill="var(--hill)" opacity=".75"/><rect x="40" y="72" width="120" height="16" fill="var(--stone-2)" opacity=".85"/><path d="M88 72q12-20 24 0z" fill="var(--dome)"/>`+rep(10,i=>`<rect x="${46+i*11}" y="78" width="3" height="4" fill="var(--star)"/>`);
+ g+=`<rect y="140" width="360" height="62" fill="var(--river)"/>`;
+ [72,252].forEach(x=>{g+=`<path d="M${x} 150V66h40v84h-8v-44a12 12 0 0 0-24 0v44z" fill="var(--stone)"/><rect x="${x-2}" y="62" width="44" height="6" fill="var(--stone-2)"/>`;});
+ g+=`<rect y="128" width="360" height="7" fill="var(--stone-2)"/>`;
+ const chain="M0 116Q40 112 76 66Q184 158 288 66Q324 112 360 116";
+ g+=`<path d="${chain}" fill="none" stroke="var(--star)" stroke-width="3"/>`;
+ g+=rep(17,i=>{const x=118+i*8.5;const t=(x-76)/212,y=66+184*t*(1-t);return `<line x1="${x}" y1="${y.toFixed(1)}" x2="${x}" y2="128" stroke="var(--star)" stroke-width="1" opacity=".6"/>`;});
+ g+=rep(12,i=>`<circle cx="${10+i*31}" cy="${150+(i%4)*12}" r="1.6" fill="var(--star)" opacity=".5"/>`);
+ return svgWrap("链子桥夜景",g);
+}
+function artCastle(){
+ let g=`<rect width="360" height="202" fill="var(--sky)"/>`;
+ g+=`<path d="M0 202V140Q90 108 180 118T360 112V202z" fill="var(--hill)"/>`;
+ g+=rep(9,i=>`<circle cx="${18+i*40}" cy="${136+(i%3)*8}" r="${10+(i%2)*4}" fill="var(--dome)" opacity=".7"/>`);
+ g+=`<rect x="40" y="104" width="300" height="16" fill="var(--stone-2)"/>`;
+ g+=`<rect x="56" y="70" width="270" height="36" fill="var(--stone)"/><rect x="56" y="66" width="270" height="6" fill="var(--stone-2)"/>`;
+ g+=rep(26,i=>`<rect x="${62+i*10}" y="78" width="4" height="8" fill="var(--shade)"/><rect x="${62+i*10}" y="92" width="4" height="8" fill="var(--shade)"/>`);
+ g+=`<rect x="170" y="42" width="44" height="28" fill="var(--stone)"/>`+rep(5,i=>`<rect x="${174+i*8}" y="48" width="3" height="14" fill="var(--shade)"/>`);
+ g+=`<path d="M164 44Q192 4 220 44z" fill="var(--dome)"/><rect x="188" y="12" width="8" height="10" fill="var(--dome)"/><path d="M186 13l6-10 6 10z" fill="var(--dome)"/>`;
+ g+=`<line x1="10" y1="200" x2="74" y2="118" stroke="var(--shade)" stroke-width="3"/><g transform="translate(36 160) rotate(-52)"><rect x="-10" y="-7" width="20" height="12" rx="2" fill="var(--red)"/><rect x="-7" y="-4" width="5" height="4" fill="var(--sky)"/><rect x="2" y="-4" width="5" height="4" fill="var(--sky)"/></g>`;
+ return svgWrap("布达城堡",g);
+}
+function artBasilica(){
+ let g=`<rect width="360" height="202" fill="var(--sky)"/><rect y="176" width="360" height="26" fill="var(--stone-2)"/>`;
+ g+=`<rect x="150" y="62" width="60" height="38" fill="var(--stone)"/>`+rep(6,i=>`<rect x="${154+i*9.5}" y="68" width="4" height="22" fill="var(--shade)"/>`);
+ g+=`<path d="M144 64Q180 6 216 64z" fill="var(--dome)"/><rect x="174" y="16" width="12" height="14" fill="var(--stone)"/><path d="M172 17l8-10 8 10z" fill="var(--dome)"/><rect x="179" y="0" width="2" height="9" fill="var(--tag-rule)"/>`;
+ g+=`<rect x="104" y="96" width="152" height="80" fill="var(--stone)"/><path d="M100 98l80-26 80 26z" fill="var(--stone-2)"/>`;
+ g+=rep(6,i=>`<rect x="${118+i*25}" y="104" width="6" height="66" fill="var(--stone-2)"/>`);
+ g+=`<path d="M168 176v-30a12 12 0 0 1 24 0v30z" fill="var(--shade)"/>`;
+ [[70,30],[260,30]].forEach(([x,w])=>{g+=`<rect x="${x}" y="58" width="${w}" height="118" fill="var(--stone)"/><circle cx="${x+w/2}" cy="80" r="8" fill="var(--sky)" stroke="var(--stone-2)" stroke-width="2"/><path d="M${x+w/2} 80v-5M${x+w/2} 80h4" stroke="var(--shade)" stroke-width="1.5"/><path d="M${x-2} 60Q${x+w/2} 30 ${x+w+2} 60z" fill="var(--dome)"/><rect x="${x+w/2-1}" y="30" width="2" height="12" fill="var(--tag-rule)"/>`+rep(3,j=>`<path d="M${x+w/2-4} ${150-j*24}v-10a4 4 0 0 1 8 0v10z" fill="var(--shade)"/>`);});
+ return svgWrap("圣伊什特万大教堂",g);
+}
+
+/* ---------- Top 5 one-day route ---------- */
+const TOP5 = [
+ {id:"parliament",time:"9:00 起（按订票时段）",art:artParliament,why:"全城最有代表性的建筑，内部金色大厅和匈牙利王冠都在这里。",tip:"官网 parlament.hu 至少提前 48 小时订票，安检预留 20–30 分钟。"},
+ {id:"basilica",time:"12:30 左右",art:artBasilica,why:"城里最高的建筑之一，上观景台能看到整个佩斯。",tip:"大厅 2,600 Ft，观景台加宝库 5,000 Ft，联票 6,800 Ft。"},
+ {id:"chain",time:"14:00 左右",art:artChain,why:"连接布达和佩斯的第一座永久桥梁，桥头石狮子和铁链是标志。",tip:"白天过桥去布达，晚上可以再回来看夜景。"},
+ {id:"castle",time:"14:30–16:00",art:artCastle,why:"站在城堡平台上看多瑙河和佩斯，视野最开阔。",tip:"城堡区散步免费；城堡区餐厅是景区价，饿了先在山下吃。"},
+ {id:"bastion",time:"日落前后（秋冬约 16:30）",art:artBastion,why:"看国会全景的最佳机位，旁边就是彩色瓦片屋顶的马加什教堂。",tip:"免费的下层平台就够看日落；10–5 月 19 点后上层塔楼也免费。教堂内部关门时间以官网为准。"}
+];
+const LEGS = [
+ {via:[[47.5079,19.0466],[47.5045,19.0446],[47.5017,19.0507],[47.5009,19.0539]],text:"沿河往南经过铁鞋纪念，再往东进城。午饭在路上的 Kisharang 小食堂（只收现金）。"},
+ {via:[[47.5009,19.0539],[47.4999,19.0468],[47.4993,19.0452]],text:"沿 Zrínyi utca 往西直走到河边，就到链子桥东头。"},
+ {via:[[47.4993,19.0452],[47.4982,19.0405],[47.4962,19.0397]],text:"走过链子桥。桥西头 Clark Ádám tér 坐 16 路公交一站上山（普通票），或沿台阶走 15 分钟。缆车只卖往返票，单程上山不划算。"},
+ {via:[[47.4962,19.0397],[47.4995,19.0360],[47.5019,19.0342],[47.5022,19.0350]],text:"沿城堡山上的 Tárnok utca 往北走，路过马加什教堂，到渔人堡。"}
+];
+const ROUTE_END="看完日落，沿台阶下到河边 Batthyány tér 坐地铁 M2，或坐 16 路公交回 Deák Ferenc tér。";
+function pathLen(v){let d=0;for(let i=1;i<v.length;i++)d+=hav({lat:v[i-1][0],lng:v[i-1][1]},{lat:v[i][0],lng:v[i][1]});return d*1.15;}
+function routeMap(){
+ const B={lat0:47.5100,lat1:47.4945,lng0:19.0310,lng1:19.0580},W=500;
+ const H=Math.round(W*((B.lat0-B.lat1)*111.2)/((B.lng1-B.lng0)*KMLNG));
+ const pj=(la,ln)=>[(ln-B.lng0)/(B.lng1-B.lng0)*W,(B.lat0-la)/(B.lat0-B.lat1)*H];
+ const path=pts=>pts.map((c,i)=>{const [x,y]=pj(c[0],c[1]);return (i?"L":"M")+x.toFixed(1)+" "+y.toFixed(1)}).join(" ");
+ const kmU=W/((B.lng1-B.lng0)*KMLNG);
+ let g=`<rect width="${W}" height="${H}" fill="var(--map-bg)"/><path d="${path(RIVER)}" fill="none" stroke="var(--river)" stroke-width="${(0.36*kmU).toFixed(0)}" stroke-linecap="round" stroke-linejoin="round"/>`;
+ [["布达",47.5070,19.0350],["佩斯",47.5065,19.0545],["多瑙河",47.5040,19.0418]].forEach(([t,la,ln])=>{const [x,y]=pj(la,ln);g+=`<text x="${x}" y="${y}" fill="var(--map-ink)" font-size="14" text-anchor="middle" font-family="var(--f-body)" ${t==="多瑙河"?`transform="rotate(-80 ${x} ${y})"`:""}>${t}</text>`;});
+ const all=[];LEGS.forEach((l,i)=>l.via.forEach((c,j)=>{if(i===0||j>0)all.push(c)}));
+ g+=`<path d="${path(all)}" fill="none" stroke="var(--ink)" stroke-width="3" stroke-dasharray="7 6" stroke-linecap="round" stroke-linejoin="round"/>`;
+ TOP5.forEach((s,i)=>{const p=BY[s.id];const [x,y]=pj(p.lat,p.lng);g+=`<g data-onmap-svg="${s.id}"><circle cx="${x}" cy="${y}" r="13" fill="var(--red)" stroke="var(--surface)" stroke-width="2.5"/><text x="${x}" y="${y+5}" fill="var(--surface)" font-size="15" font-weight="700" text-anchor="middle" font-family="var(--f-sign)">${i+1}</text></g>`;});
+ if(inMap(hotel)&&hotel.lat<=B.lat0&&hotel.lat>=B.lat1&&hotel.lng>=B.lng0&&hotel.lng<=B.lng1){const [x,y]=pj(hotel.lat,hotel.lng);g+=`<circle cx="${x}" cy="${y}" r="9" fill="var(--ink)" stroke="var(--surface)" stroke-width="2"/><path d="M${x-5} ${y+4}v-5l5-4 5 4v5z" fill="var(--surface)"/>`;}
+ g+=`<g transform="translate(14 ${H-14})"><path d="M0 0h${(kmU*0.5).toFixed(1)}M0 -5v5M${(kmU*0.5).toFixed(1)} -5v5" stroke="var(--map-ink)" stroke-width="1.5" fill="none"/><text x="${(kmU*0.25).toFixed(1)}" y="-7" fill="var(--map-ink)" font-size="11" text-anchor="middle" font-family="var(--f-sign)">500 m</text></g>`;
+ return `<div class="mapwrap"><svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Top 5 一日路线示意图">${g}</svg></div>`;
+}
+function renderTop5(){
+ const total=LEGS.reduce((a,l)=>a+pathLen(l.via),0);
+ const ids=TOP5.map(s=>s.id);
+ const routeUrl=`https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(qOf(BY[ids[0]]))}&destination=${encodeURIComponent(qOf(BY[ids[4]]))}&waypoints=${ids.slice(1,4).map(i=>encodeURIComponent(qOf(BY[i]))).join("%7C")}&travelmode=walking`;
+ const d0=hav(hotel,BY[ids[0]]),a0=advise(d0);
+ let h=`<div class="panel route-head"><h3>一天看完 Top 5，不走回头路</h3>
+  <p class="note">从佩斯的国会出发，一路往南再过河，最后在布达城堡山上的渔人堡看日落，正好隔着多瑙河看国会。</p>
+  <div class="route-sum"><span>步行约 <b>${total.toFixed(1)} km</b></span><span>上山可坐 <b>1</b> 站公交</span><span>建议 <b>9:00</b> 出发</span></div>
+  ${routeMap()}
+  <div class="actions"><a class="btn primary" href="${routeUrl}" target="_blank" rel="noopener">在 Google 地图打开全程</a><a class="btn" href="${navUrl(BY[ids[0]],d0<2.5?"walking":"transit")}" target="_blank" rel="noopener">从酒店到第 1 站（${fmtD(d0)}）</a></div>
+  <p class="note">插画为示意，非实景照片。</p></div>`;
+ h+=`<div>`;
+ TOP5.forEach((s,i)=>{
+  const p=BY[s.id];
+  h+=`<article class="stop-card">${s.art()}
+   <div class="stop-title"><span class="stop-no">${i+1}</span><span class="sign">${esc(p.name)}</span>${favBtn(p)}</div>
+   <div class="stop-body"><p class="zh">${esc(p.zh)} · <span class="stop-time">${esc(s.time)}</span></p>
+   <p>${esc(s.why)}</p>
+   <dl class="facts"><div><dt>门票</dt><dd>${esc(p.price)}</dd></div><div><dt>提醒</dt><dd>${esc(s.tip)}</dd></div></dl>
+   <div class="actions"><button class="btn" type="button" data-onmap="${p.id}">离酒店多远</button></div></div></article>`;
+  if(i<LEGS.length){const L=LEGS[i],d=pathLen(L.via),m=Math.round(d*1000/4.5*60/1000);
+   h+=`<div class="leg"><span>步行 <b>${Math.max(3,m)} 分钟</b> · <b>${fmtD(d)}</b></span><span>${esc(L.text)}</span></div>`;}
+  else h+=`<div class="leg"><span><b>结束</b></span><span>${esc(ROUTE_END)}</span></div>`;
+ });
+ h+=`</div>`;
+ $("#sightList").innerHTML=h;
+}
+
+/* ---------- Top 10 trap ranking ---------- */
+const TOP10 = [
+ {id:"parliament",st:5,v:"ok",l:"必去",why:"全城最有代表性的建筑。",trap:"现场票常卖光、排队 1–3 小时。不要在第三方平台买加价票，官网 parlament.hu 至少提前 48 小时订；非欧盟成人约 8,500 Ft。"},
+ {id:"bastion",st:5,v:"ok",l:"必去",why:"看国会和多瑙河的最佳机位。",trap:"上层塔楼白天收 1,700 Ft，其实免费的下层平台就能拍到同样的风景；早上 9 点前或 10–5 月 19 点后上层也免费。"},
+ {id:"chain",st:5,v:"ok",l:"必去",why:"布达和佩斯之间最经典的桥，夜景最美。",trap:"多瑙河游船的船上餐饮贵，订之前看清价格；不坐船，晚上走一次桥一样好看，还免费。"},
+ {id:"castle",st:4,v:"ok",l:"值得",why:"城堡平台视野开阔。",trap:"城堡区餐厅是景区价。缆车只卖往返票约 5,000 Ft，坐 16 路公交上山用普通票就行。"},
+ {id:"basilica",st:4,v:"ok",l:"值得",why:"观景台看佩斯夜景。",trap:"旧攻略写“免费参观”，2025 年 12 月起大厅 2,600 Ft、联票 6,800 Ft。"},
+ {id:"szechenyi",st:4,v:"ok",l:"值得",why:"最有布达佩斯特色的体验。",trap:"门口倒卖的票可能是假的，只在官方售票处或官网买；周六下午最挤；自带拖鞋和毛巾。"},
+ {id:"dohany",st:3,v:"warn",l:"挑日子去",why:"欧洲最大的犹太会堂。",trap:"周六和犹太节日关门。晚上七区有“热情本地人请你喝酒”的骗局，账单 8 万–20 万 Ft，只去自己选的酒吧。"},
+ {id:"nyc",st:2,v:"warn",l:"看一次就好",why:"大厅确实很美。",trap:"白天排长队，浓缩 2,975 Ft 再加 15% 服务费，一桌只出一张账单。早上 7–9 点去，或提前订晚餐。"},
+ {id:"vaci",st:1,v:"skip",l:"只逛不吃",why:"市中心步行街。",trap:"门口拉客的餐厅、没点也收的面包、10–15% 服务费、Euronet 橙色 ATM 都集中在这里。走过看看，吃饭往旁边走一个街区。"},
+ {id:"gellertbath",st:0,v:"skip",l:"别去，已关闭",why:"曾经最美的新艺术风格温泉。",trap:"整修关闭到 2028 年，很多旧攻略和笔记还在推荐。改去塞切尼或鲁达什。"}
+];
+function stars(n){return `<span class="st" aria-label="必去指数 ${n} 星（满分 5）">${"★".repeat(n)}<i>${"★".repeat(5-n)}</i></span>`;}
+function renderTop10(){
+ let h=`<p class="lead">小红书上最常见的 10 个地方，按必去程度从高到低排，每个都写了最容易踩的雷。</p><div class="top10">`;
+ TOP10.forEach((t,i)=>{const p=BY[t.id];
+  h+=`<article class="t10"><span class="rk ${t.st<3?"low":""}">${i+1}</span>
+   <div class="hd"><h3>${esc(p.zh)}</h3><span class="verdict ${VCLS[t.v]}">${esc(t.l)}</span></div>
+   <div class="bd">${stars(t.st)}<p>${esc(t.why)}</p><p class="trap"><b>排雷：</b>${esc(t.trap)}</p>${t.id==="gellertbath"?"":distBlock(p)}
+   <div class="actions">${t.id==="gellertbath"?`<button class="btn" type="button" data-onmap="rudas">看鲁达什温泉多远</button>`:`<button class="btn" type="button" data-onmap="${p.id}">地图上看</button>`}</div></div></article>`;});
+ h+=`</div>`;
+ $("#sightList").innerHTML=h;
 }
 
 /* ---------- hotel ---------- */
@@ -903,7 +1082,7 @@ function renderMap(){
  const km=W/((MAP.lng1-MAP.lng0)*KMLNG);
  out+=`<g transform="translate(14 ${H-16})"><path d="M0 0h${km.toFixed(1)}M0 -5v5M${km.toFixed(1)} -5v5" stroke="var(--map-ink)" stroke-width="1.5" fill="none"/><text x="${(km/2).toFixed(1)}" y="-7" fill="var(--map-ink)" font-size="11" text-anchor="middle" font-family="var(--f-sign)">1 km</text></g>`;
  const seen=new Set();
- const pts=P.filter(p=>p.kind!=="transit"&&inMap(p)&&!["xmasbas","xmasvor","centralmkt"].includes(p.id));
+ const pts=P.filter(p=>p.kind!=="transit"&&p.type!=="x"&&inMap(p)&&!["xmasbas","xmasvor","centralmkt"].includes(p.id));
  const sel=S.sel?(BY[S.sel]||S.sel):null;
  if(sel&&inMap(hotel)&&inMap(sel)){
   const [x1,y1]=proj(hotel.lat,hotel.lng),[x2,y2]=proj(sel.lat,sel.lng);
@@ -963,6 +1142,8 @@ function renderAll(){renderHotel();renderFood();renderSights();renderMap();rende
 
 /* ---------- events ---------- */
 document.addEventListener("click",e=>{
+ const g=e.target.closest("[data-onmap-svg]");
+ if(g){S.sel=g.getAttribute("data-onmap-svg");S.pending=null;setTab("dist");renderMap();$("#map").scrollIntoView({behavior:"smooth",block:"center"});return;}
  const t=e.target.closest("button");
  if(!t)return;
  if(t.dataset.tab){setTab(t.dataset.tab);return;}

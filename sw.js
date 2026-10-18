@@ -1,6 +1,6 @@
 // 布达佩斯初访手册 · 离线缓存
 // 改了 index.html 之后，把下面的版本号加 1，手机上会自动换成新版。
-const CACHE = "budapest-guide-v1";
+const CACHE = "budapest-guide-v2";
 const CORE = ["./", "./index.html", "./manifest.webmanifest", "./icon-192.png", "./icon-512.png", "./apple-touch-icon.png"];
 
 self.addEventListener("install", (e) => {
