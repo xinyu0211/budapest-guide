@@ -1,0 +1,1019 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="布达佩斯手册">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<style>
+:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{margin:0}
+img{max-width:100%}
+[hidden]{display:none!important}
+</style>
+<title>布达佩斯初访手册</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@600;900&display=swap">
+<style>
+/* Layout: one phone-width column; Zsolnay-tile band under the header, deep-green shop-sign names, a schematic Danube map for distances. */
+:root{
+  --bg:#EDF0EB; --surface:#FFFFFF; --surface-2:#E1E6DF; --ink:#1A1F1C; --muted:#5C6560; --line:#D2D9D1;
+  --red:#B4361C; --blue:#1F5C8A; --ok:#2B7A4B; --warn:#995800; --bad:#B3261E;
+  --tag-bg:#1F4A3A; --tag-fg:#F7F3E8; --tag-rule:#C99A2E; --plate:#E3C46F; --plate-fg:#1A1F1C;
+  --river:#B5CFDF; --map-bg:#E3E8E1; --map-ink:#7F8984;
+  --m1:#F2C500; --m2:#E41F18; --m3:#005CA5; --m4:#4CA22F;
+  --f-display:"Noto Serif SC","Songti SC",serif;
+  --f-body:"Noto Sans SC","PingFang SC","Microsoft YaHei",system-ui,sans-serif;
+  --f-sign:"Barlow Condensed","Arial Narrow","Roboto Condensed",sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#121614; --surface:#1B201D; --surface-2:#262C28; --ink:#E9EEEA; --muted:#A1AAA4; --line:#313833;
+  --red:#F07A5C; --blue:#7FB3DA; --ok:#63C48E; --warn:#E5A445; --bad:#FF7B72;
+  --tag-bg:#25594A; --tag-fg:#F7F3E8; --tag-rule:#D9AE4A; --plate:#D9B95C; --plate-fg:#1A1F1C;
+  --river:#1F384A; --map-bg:#171C19; --map-ink:#78827C; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#121614; --surface:#1B201D; --surface-2:#262C28; --ink:#E9EEEA; --muted:#A1AAA4; --line:#313833;
+  --red:#F07A5C; --blue:#7FB3DA; --ok:#63C48E; --warn:#E5A445; --bad:#FF7B72;
+  --tag-bg:#25594A; --tag-fg:#F7F3E8; --tag-rule:#D9AE4A; --plate:#D9B95C; --plate-fg:#1A1F1C;
+  --river:#1F384A; --map-bg:#171C19; --map-ink:#78827C; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.65;-webkit-text-size-adjust:100%}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--surface)}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0;line-height:1.3}
+p{margin:0}
+a{color:var(--blue)}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--blue);outline-offset:2px;border-radius:6px}
+.num{font-family:var(--f-sign);font-variant-numeric:tabular-nums}
+
+/* header with Zsolnay tile band */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--surface)}
+.top::after{content:"";display:block;height:6px;background:
+  linear-gradient(135deg,var(--tag-rule) 25%,transparent 25%) 0 0/12px 12px,
+  linear-gradient(225deg,var(--tag-rule) 25%,transparent 25%) 0 0/12px 12px,
+  linear-gradient(315deg,var(--red) 25%,transparent 25%) 0 0/12px 12px,
+  linear-gradient(45deg,var(--red) 25%,transparent 25%) 0 0/12px 12px,var(--tag-bg)}
+.top-in{max-width:680px;margin:0 auto;padding-block:10px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{display:flex;flex-direction:column;min-width:0}
+.brand h1{font-size:19px;font-weight:900;letter-spacing:.02em}
+.brand span{font-size:11px;color:var(--muted);letter-spacing:.08em;font-family:var(--f-sign);text-transform:uppercase}
+.hotel-chip{display:flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--bg);border-radius:999px;padding:6px 12px 6px 9px;font-size:13px;cursor:pointer;min-width:0;max-width:56%}
+.hotel-chip svg{flex:none}
+.hotel-chip b{font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hotel-chip.example b{color:var(--muted)}
+
+main{max-width:680px;margin:0 auto;padding-block:16px calc(96px + env(safe-area-inset-bottom,0px));padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+section.tab{display:flex;flex-direction:column;gap:16px}
+.sec-h{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-top:8px}
+.sec-h h2{font-size:22px;font-weight:900}
+.sec-h small{color:var(--muted);font-size:12px}
+.lead{color:var(--muted);font-size:14px}
+
+.chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:2px;scrollbar-width:none;margin-inline:-2px;padding-inline:2px}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:none;border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 14px;font-size:14px;cursor:pointer;white-space:nowrap}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.toggle{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted);cursor:pointer;user-select:none}
+.toggle input{appearance:none;width:38px;height:22px;border-radius:999px;background:var(--surface-2);border:1px solid var(--line);position:relative;cursor:pointer;flex:none;margin:0}
+.toggle input::after{content:"";position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:var(--muted);transition:transform .15s}
+.toggle input:checked{background:var(--blue);border-color:var(--blue)}
+.toggle input:checked::after{transform:translateX(16px);background:var(--surface)}
+
+.rules{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:12px}
+.rules h3{font-size:16px}
+.rules ol{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px}
+.meter{display:flex;flex-direction:column;gap:6px;margin-top:4px}
+.meter-label{font-size:12px;color:var(--muted)}
+.meter-bar{display:grid;grid-template-columns:2fr 2fr 2fr;border-radius:8px;overflow:hidden;font-size:12px;text-align:center;line-height:1.3}
+.meter-bar div{padding:6px 4px}
+.meter-bar .m1{background:color-mix(in srgb,var(--ok) 22%,var(--surface))}
+.meter-bar .m2{background:color-mix(in srgb,var(--warn) 22%,var(--surface))}
+.meter-bar .m3{background:color-mix(in srgb,var(--bad) 24%,var(--surface))}
+.meter-bar b{display:block;font-family:var(--f-sign);font-size:15px}
+
+.list{display:flex;flex-direction:column;gap:12px}
+.place{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.place-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+.sign{display:inline-block;background:var(--tag-bg);color:var(--tag-fg);font-family:var(--f-sign);font-weight:700;font-size:19px;line-height:1.15;letter-spacing:.04em;text-transform:uppercase;padding:6px 12px 5px;border-radius:4px;box-shadow:inset 0 0 0 3px var(--tag-bg),inset 0 0 0 4px var(--tag-rule);word-break:break-word}
+.zh{font-weight:500;font-size:15px}
+.meta{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;font-size:13px;color:var(--muted)}
+.addr{display:inline-flex;align-items:center;gap:6px}
+.plate{display:inline-block;background:var(--plate);color:var(--plate-fg);font-family:var(--f-sign);font-weight:700;font-size:13px;line-height:1;padding:3px 7px 2px;border-radius:999px}
+.tag{font-size:11px;font-weight:700;letter-spacing:.06em;padding:2px 8px;border-radius:999px;border:1px solid currentColor;color:var(--red)}
+.facts{display:grid;gap:6px;margin:0}
+.facts div{display:grid;grid-template-columns:4.2em 1fr;gap:8px}
+.facts dt{color:var(--muted);font-size:13px;padding-top:1px}
+.facts dd{margin:0;min-width:0}
+details.more summary{cursor:pointer;color:var(--blue);font-size:14px;list-style:none}
+details.more summary::-webkit-details-marker{display:none}
+details.more summary::after{content:" ▾"}
+details.more[open] summary::after{content:" ▴"}
+details.more .facts{margin-top:8px}
+
+.dist{display:flex;align-items:center;gap:10px;background:var(--bg);border-radius:12px;padding:8px 12px;min-width:0}
+.dist .km{font-family:var(--f-sign);font-weight:700;font-size:22px;line-height:1;font-variant-numeric:tabular-nums;flex:none}
+.dist .how{display:flex;flex-direction:column;font-size:12.5px;line-height:1.4;min-width:0}
+.dist .how b{font-size:13px}
+.dist.walk .km,.dist.walk .how b{color:var(--ok)}
+.dist.transit .km,.dist.transit .how b{color:var(--blue)}
+.dist.far .km,.dist.far .how b{color:var(--muted)}
+
+.actions{display:flex;flex-wrap:wrap;gap:8px}
+.btn{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:7px 12px;font-size:13.5px;text-decoration:none;color:var(--ink);cursor:pointer}
+.btn.primary{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.fav{border:none;background:none;padding:4px;cursor:pointer;color:var(--muted);flex:none;display:flex;align-items:center;gap:4px;font-size:12px}
+.fav[aria-pressed="true"]{color:var(--red)}
+.fav[aria-pressed="true"] svg path{fill:currentColor}
+
+.verdict{display:inline-block;font-size:12px;font-weight:700;padding:2px 9px;border-radius:6px;flex:none}
+.v-ok{background:color-mix(in srgb,var(--ok) 18%,transparent);color:var(--ok)}
+.v-warn{background:color-mix(in srgb,var(--warn) 18%,transparent);color:var(--warn)}
+.v-meh{background:var(--surface-2);color:var(--muted)}
+.v-skip{background:color-mix(in srgb,var(--bad) 16%,transparent);color:var(--bad)}
+.hype-row{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px;display:flex;flex-direction:column;gap:6px}
+.hype-head{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.hype-head h3{font-size:16px;font-family:var(--f-body);font-weight:700}
+
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.panel h3{font-size:17px}
+.panel ul,.panel ol{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px}
+.note{font-size:13px;color:var(--muted)}
+.warnbox{border-left:3px solid var(--warn);padding:8px 12px;background:color-mix(in srgb,var(--warn) 9%,var(--surface));border-radius:0 10px 10px 0;font-size:14px}
+
+.hotel-now{display:flex;gap:12px;align-items:center}
+.hotel-now .pin{width:40px;height:40px;border-radius:12px;background:var(--ink);color:var(--bg);display:grid;place-items:center;flex:none}
+.hotel-now strong{display:block;font-size:16px}
+.hotel-now span{font-size:12.5px;color:var(--muted)}
+label.fld{display:flex;flex-direction:column;gap:6px;font-size:13px;color:var(--muted)}
+.input{width:100%;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:10px;padding:10px 12px;font:inherit;font-size:15px}
+textarea.input{min-height:64px;resize:vertical}
+.msg{font-size:13px;border-radius:8px;padding:6px 10px}
+.msg.err{color:var(--bad);background:color-mix(in srgb,var(--bad) 10%,transparent)}
+.msg.ok{color:var(--ok);background:color-mix(in srgb,var(--ok) 10%,transparent)}
+.msg.warn{color:var(--warn);background:color-mix(in srgb,var(--warn) 12%,transparent)}
+.mapwrap{position:relative;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:var(--map-bg)}
+.mapwrap svg{display:block;width:100%;height:auto;touch-action:manipulation;cursor:crosshair}
+.map-legend{display:flex;flex-wrap:wrap;gap:12px;font-size:12px;color:var(--muted)}
+.map-legend i{display:inline-block;width:10px;height:10px;margin-right:4px;vertical-align:-1px}
+.pending{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;background:var(--ink);color:var(--bg);border-radius:12px;padding:10px 12px;font-size:14px}
+.pending .btn{background:var(--bg);color:var(--ink);border-color:var(--bg)}
+.pending .btn.ghost{background:transparent;color:var(--bg);border-color:color-mix(in srgb,var(--bg) 50%,transparent)}
+.sel-card{display:flex;flex-direction:column;gap:10px}
+.rows{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--surface)}
+.row{display:grid;grid-template-columns:1fr auto;gap:4px 12px;align-items:center;padding:11px 14px;border-top:1px solid var(--line);cursor:pointer;background:none;border-left:0;border-right:0;border-bottom:0;text-align:left;width:100%}
+.row:first-child{border-top:0}
+.row:hover{background:var(--bg)}
+.row .rn{font-weight:500;min-width:0}
+.row .rn small{display:block;color:var(--muted);font-weight:400;font-size:12px;font-family:var(--f-sign);letter-spacing:.03em;text-transform:uppercase}
+.row .rd{text-align:right;font-family:var(--f-sign);font-weight:700;font-size:17px;font-variant-numeric:tabular-nums}
+.row .rd small{display:block;font-family:var(--f-body);font-weight:400;font-size:11.5px;color:var(--muted)}
+.row.walk .rd{color:var(--ok)}.row.transit .rd{color:var(--blue)}.row.far .rd{color:var(--muted)}
+.preset-chips{display:flex;flex-wrap:wrap;gap:8px}
+
+.day{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:10px}
+.day-h{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.day-h .dn{font-family:var(--f-sign);font-weight:700;font-size:13px;letter-spacing:.08em;color:var(--red);text-transform:uppercase}
+.day-h h3{font-size:18px}
+.stops{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;counter-reset:s}
+.stops li{display:grid;grid-template-columns:22px 1fr auto;gap:10px;align-items:baseline;padding:7px 0;border-top:1px dashed var(--line);counter-increment:s}
+.stops li:first-child{border-top:0}
+.stops li::before{content:counter(s);font-family:var(--f-sign);font-weight:700;color:var(--muted)}
+.stops .sd{font-family:var(--f-sign);font-weight:600;color:var(--muted);font-variant-numeric:tabular-nums;font-size:14px;white-space:nowrap}
+
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:12px}
+table{border-collapse:collapse;width:100%;font-size:14px;min-width:300px}
+th,td{padding:9px 12px;text-align:left;border-top:1px solid var(--line)}
+thead th{border-top:0;background:var(--bg);font-size:12px;color:var(--muted);font-weight:500}
+td.n{font-family:var(--f-sign);font-weight:700;font-size:16px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.line{display:inline-grid;place-items:center;min-width:28px;height:24px;padding:0 5px;border-radius:6px;font-family:var(--f-sign);font-weight:700;color:#fff;font-size:14px;margin-right:6px;vertical-align:middle}
+.l1{background:var(--m1);color:#1b1b1b}.l2{background:var(--m2)}.l3{background:var(--m3)}.l4{background:var(--m4)}
+
+.phone{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 0;border-top:1px solid var(--line)}
+.phone:first-of-type{border-top:0}
+.phone .pn{font-family:var(--f-sign);font-weight:700;font-size:20px;user-select:all;font-variant-numeric:tabular-nums}
+.phone .pl{font-size:13px;color:var(--muted)}
+.timeline{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.timeline li{display:grid;grid-template-columns:4.6em 1fr;gap:12px;padding:10px 0;border-top:1px solid var(--line)}
+.timeline li:first-child{border-top:0}
+.timeline .yr{font-family:var(--f-sign);font-weight:700;font-size:17px;color:var(--red);font-variant-numeric:tabular-nums}
+.timeline .see{display:block;font-size:12.5px;color:var(--muted);margin-top:2px}
+.words{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px}
+.word{background:var(--bg);border-radius:10px;padding:8px 10px}
+.word b{display:block;font-family:var(--f-sign);font-size:18px;letter-spacing:.02em}
+.word span{font-size:12.5px;color:var(--muted)}
+
+nav.tabs{position:fixed;left:0;right:0;bottom:0;z-index:25;background:var(--surface);border-top:1px solid var(--line)}
+.tabs-in{max-width:680px;margin:0 auto;display:grid;grid-template-columns:repeat(5,1fr);padding-bottom:env(safe-area-inset-bottom,0px);padding-left:max(8px,env(safe-area-inset-left,0px));padding-right:max(8px,env(safe-area-inset-right,0px))}
+.tabbtn{border:0;background:none;display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 0 7px;font-size:11.5px;color:var(--muted);cursor:pointer}
+.tabbtn svg{width:24px;height:24px}
+.tabbtn[aria-selected="true"]{color:var(--red);font-weight:700}
+.tabbtn.center span.ring{display:grid;place-items:center;width:40px;height:30px;border-radius:10px;background:var(--surface-2)}
+.tabbtn.center[aria-selected="true"] span.ring{background:var(--red);color:var(--surface)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+
+<header class="top"><div class="top-in">
+  <div class="brand"><h1>布达佩斯初访手册</h1><span>Budapest · 2026 秋冬</span></div>
+  <button class="hotel-chip" id="hotelChip" type="button" aria-label="设置酒店位置">
+    <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z" fill="currentColor"/></svg>
+    <b id="hotelChipText">酒店</b>
+  </button>
+</div></header>
+
+<main>
+<!-- ============ 美食 ============ -->
+<section class="tab" id="tab-food" aria-labelledby="h-food">
+  <div class="sec-h"><h2 id="h-food">美食</h2><small>本地人常去 · 口碑稳定</small></div>
+  <div class="rules">
+    <h3>吃饭三条铁律</h3>
+    <ol>
+      <li><b>不在 Váci utca 和多瑙河边游客区吃饭</b>。往旁边走一个街区，同样的菜便宜 30–50%。</li>
+      <li>结账先看有没有 <b>szervízdíj（服务费）</b>，很多店已加 10–15%，加了就不用再给小费。</li>
+      <li>刷卡、取钱一律选 <b>HUF（福林）</b>，不要选人民币或欧元。</li>
+    </ol>
+    <div class="meter">
+      <span class="meter-label">用一碗牛肉汤 gulyásleves 判断是不是游客价</span>
+      <div class="meter-bar" role="img" aria-label="家常小馆约 1400 到 2500 福林，市区餐厅约 3000 到 4000 福林，5000 福林以上是游客价">
+        <div class="m1"><b>1,400–2,500 Ft</b>家常小馆</div>
+        <div class="m2"><b>3,000–4,000 Ft</b>市区餐厅</div>
+        <div class="m3"><b>5,000+ Ft</b>游客价</div>
+      </div>
+    </div>
+  </div>
+  <div class="chips" id="foodChips" role="group" aria-label="美食分类"></div>
+  <label class="toggle"><input type="checkbox" id="foodNear"> 离酒店近的排前面</label>
+  <div class="list" id="foodList"></div>
+</section>
+
+<!-- ============ 景点 ============ -->
+<section class="tab" id="tab-sights" aria-labelledby="h-sights" hidden>
+  <div class="sec-h"><h2 id="h-sights">景点</h2><small>门票为 2026 年资料</small></div>
+  <div class="warnbox">盖勒特温泉（Gellért）整修关闭到 2028 年，国王温泉（Király）也关闭中。泡温泉请去塞切尼、鲁达什或卢卡奇。</div>
+  <div class="chips" id="sightChips" role="group" aria-label="景点分类"></div>
+  <label class="toggle" id="sightNearWrap"><input type="checkbox" id="sightNear"> 离酒店近的排前面</label>
+  <div class="list" id="sightList"></div>
+</section>
+
+<!-- ============ 距离 ============ -->
+<section class="tab" id="tab-dist" aria-labelledby="h-dist" hidden>
+  <div class="sec-h"><h2 id="h-dist">离酒店多远</h2><small>直线距离 × 1.3 估算路程</small></div>
+
+  <div class="panel" id="hotelPanel">
+    <div class="hotel-now">
+      <div class="pin"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21V9l9-6 9 6v12h-6v-7H9v7z" fill="currentColor"/></svg></div>
+      <div><strong id="hotelName">—</strong><span id="hotelCoord"></span></div>
+    </div>
+    <label class="fld" for="hotelInput">粘贴酒店坐标，或 Google 地图的完整链接
+      <textarea class="input" id="hotelInput" placeholder="例如 47.4979, 19.0547"></textarea>
+    </label>
+    <label class="fld" for="hotelLabel">酒店名称（可不填）
+      <input class="input" id="hotelLabel" placeholder="例如 Hotel Clark">
+    </label>
+    <div class="actions"><button class="btn primary" id="hotelSave" type="button">保存为我的酒店</button></div>
+    <div id="hotelMsg" class="msg" hidden></div>
+    <details class="more">
+      <summary>怎么拿到酒店坐标？</summary>
+      <ol style="margin-top:8px">
+        <li><b>Google 地图 App</b>：搜到酒店后，在酒店位置上<b>长按</b>，屏幕上方搜索框会出现一串数字（如 47.4979, 19.0547），点一下复制，粘贴到上面。</li>
+        <li><b>苹果地图</b>：在酒店位置长按放一个大头针，往上滑信息卡，能看到“坐标”，长按复制。</li>
+        <li><b>Booking / 携程</b>：打开酒店页面的地图，用 Google 地图打开，再按第 1 步长按。</li>
+        <li>分享出来的 <span class="num">maps.app.goo.gl</span> 短链接里没有坐标，用不了；在浏览器打开后，地址栏里的长链接可以用。</li>
+      </ol>
+    </details>
+    <div>
+      <p class="note" style="margin-bottom:8px">还没订酒店？先选个大致区域：</p>
+      <div class="preset-chips" id="presets"></div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h3>市中心示意图</h3>
+    <p class="note">点地图上的点查看距离；点空白处可以把酒店设在那里。河流和位置为示意，导航请用下方按钮打开地图 App。</p>
+    <div class="mapwrap"><svg id="map" role="img" aria-label="布达佩斯市中心示意图，标出酒店、餐厅和景点"></svg></div>
+    <div id="pending" class="pending" hidden></div>
+    <div class="map-legend">
+      <span><i style="background:var(--red);border-radius:50%"></i>餐厅</span>
+      <span><i style="background:var(--blue)"></i>景点</span>
+      <span><i style="background:var(--ink);border-radius:50%"></i>酒店</span>
+      <span id="offmap"></span>
+    </div>
+    <div id="selCard" class="sel-card"></div>
+  </div>
+
+  <div class="panel">
+    <h3>查目的地</h3>
+    <input class="input" id="q" type="search" placeholder="输入名字，例如 国会、渔人堡、机场" autocomplete="off">
+    <div class="chips" id="distChips" role="group" aria-label="目的地分类"></div>
+    <div class="rows" id="results"></div>
+  </div>
+
+  <div class="panel">
+    <h3>清单外的地方</h3>
+    <label class="fld" for="customInput">粘贴目的地坐标或 Google 地图完整链接
+      <textarea class="input" id="customInput" placeholder="例如 47.5072, 19.0458"></textarea>
+    </label>
+    <div class="actions"><button class="btn primary" id="customGo" type="button">算距离</button></div>
+    <div id="customOut"></div>
+  </div>
+</section>
+
+<!-- ============ 出行 ============ -->
+<section class="tab" id="tab-go" aria-labelledby="h-go" hidden>
+  <div class="sec-h"><h2 id="h-go">出行</h2><small>BKK 公交 2026 年票价</small></div>
+
+  <div class="panel">
+    <h3>公交票：下载 BudapestGO App</h3>
+    <div class="tbl"><table>
+      <thead><tr><th>票种</th><th>价格</th><th>说明</th></tr></thead>
+      <tbody>
+        <tr><td>单程票</td><td class="n">500 Ft</td><td>上车向司机买 700 Ft；换乘要再用一张</td></tr>
+        <tr><td>30 分钟票</td><td class="n">600 Ft</td><td>时间内可随意换乘</td></tr>
+        <tr><td>90 分钟票</td><td class="n">850 Ft</td><td>时间内可随意换乘</td></tr>
+        <tr><td>24 小时票</td><td class="n">2,750 Ft</td><td>一天坐 4 次以上就划算</td></tr>
+        <tr><td>72 小时票</td><td class="n">5,750 Ft</td><td>3 天行程最省事</td></tr>
+        <tr><td>100E 机场快线</td><td class="n">2,500 Ft</td><td>专用票，普通票和通票不能用</td></tr>
+      </tbody>
+    </table></div>
+    <ul>
+      <li><b>BudapestGO</b> App 可以查路线、买电子票。电子票用之前要先激活：电车和公交上扫门边的二维码，地铁在下站台前扫。</li>
+      <li>4 条地铁都可以直接<b>刷银行卡或手机</b>进站（Budapest Pay&amp;GO），按单程票计费。</li>
+      <li>纸质票：地铁在闸口前打票；电车和公交上车后在橙色或红色机器上打票。没打票等于逃票，查票员会罚款。</li>
+      <li>用单程票的话，从地铁换电车或公交要再用一张；时间票和通票不受影响。</li>
+      <li>四条地铁：<span class="line l1">M1</span>黄线（安德拉什大街、英雄广场、塞切尼温泉）<span class="line l2">M2</span>红线（国会、Astoria）<span class="line l3">M3</span>蓝线（圣伊什特万大教堂、Kálvin tér）<span class="line l4">M4</span>绿线（中央市场、Kálvin tér）</li>
+      <li><b>2 路电车</b>沿佩斯一侧的多瑙河岸行驶，能看到国会和城堡，适合顺路看风景。也是小偷较多的线路，看好包。</li>
+    </ul>
+  </div>
+
+  <div class="panel">
+    <h3>机场进城</h3>
+    <ul>
+      <li><b>最方便：100E 机场快线</b>，日夜运行，到 Kálvin tér、Astoria、Deák Ferenc tér，约 40 分钟。票价 2,500 Ft，可以在车上刷卡买。</li>
+      <li><b>最省：200E 公交</b> 到 Kőbánya-Kispest，换地铁 <span class="line l3">M3</span>。200E 可以用普通票，换地铁要再用一张票（时间票或通票除外）。</li>
+      <li><b>叫车</b>：Bolt、Uber 或 Főtaxi，到市中心一般 12,000–15,000 Ft，看路况。不要在出口跟主动揽客的人走。</li>
+    </ul>
+  </div>
+
+  <div class="panel">
+    <h3>上城堡山</h3>
+    <ul>
+      <li><b>16 路公交</b>：从 Deák Ferenc tér 出发，过链子桥直接开上城堡山，用普通公交票。</li>
+      <li><b>城堡缆车（Sikló）</b>：从链子桥西头 Clark Ádám tér 上山，往返约 5,000 Ft（不卖单程，以官网 siklojegy.hu 为准），8:00–22:00。单数周的周一可能停运检修。</li>
+      <li>年轻人也可以走上去：从链子桥西头沿台阶步道约 15 分钟。</li>
+    </ul>
+  </div>
+
+  <div class="panel">
+    <h3>打车和走路</h3>
+    <ul>
+      <li>只用 <b>Bolt、Uber</b> 或正规出租车公司，App 里会先显示价格。东站（Keleti）、机场、深夜游客区路边揽客的车最容易宰客。</li>
+      <li>佩斯一侧（国会、大教堂、犹太区、中央市场）基本是平地，走路很舒服。布达一侧（城堡山、盖勒特山）都要爬坡，穿平底防滑鞋。</li>
+    </ul>
+  </div>
+
+  <div class="panel">
+    <h3>一日游怎么去</h3>
+    <ul>
+      <li><b>圣安德烈（Szentendre）</b>：从 Batthyány tér 坐 H5 郊区火车（HÉV）约 40 分钟。出了市界要另买延伸段车票，市内通票不够。</li>
+      <li><b>埃格尔（Eger）</b>：火车约 2 小时，城堡加葡萄酒谷，适合住一晚。</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ 须知 ============ -->
+<section class="tab" id="tab-notes" aria-labelledby="h-notes" hidden>
+  <div class="sec-h"><h2 id="h-notes">须知</h2><small>安全 · 钱 · 签证 · 历史</small></div>
+  <div class="chips" id="noteJump" role="group" aria-label="跳到小节">
+    <button class="chip" type="button" data-jump="n-offline">离线使用</button>
+    <button class="chip" type="button" data-jump="n-trap">避坑</button>
+    <button class="chip" type="button" data-jump="n-money">钱</button>
+    <button class="chip" type="button" data-jump="n-safe">安全</button>
+    <button class="chip" type="button" data-jump="n-sos">紧急电话</button>
+    <button class="chip" type="button" data-jump="n-bath">泡温泉</button>
+    <button class="chip" type="button" data-jump="n-life">生活礼仪</button>
+    <button class="chip" type="button" data-jump="n-visa">签证</button>
+    <button class="chip" type="button" data-jump="n-red">小红书</button>
+    <button class="chip" type="button" data-jump="n-hist">历史</button>
+    <button class="chip" type="button" data-jump="n-check">出发前核对</button>
+  </div>
+
+  <div class="panel" id="n-offline">
+    <h3>存到手机，没网也能用</h3>
+    <div id="offlineStatus" class="msg warn">正在检查离线状态…</div>
+    <ol>
+      <li><b>iPhone</b>：用 <b>Safari</b> 打开本页，点底部的分享按钮 → <b>添加到主屏幕</b>。</li>
+      <li><b>安卓</b>：用 <b>Chrome</b> 打开本页，点右上角 ⋮ → <b>添加到主屏幕</b> 或 <b>安装应用</b>。</li>
+      <li>有网的时候，从主屏幕图标<b>打开一次</b>，等上面显示“已保存”。之后没网也能打开。</li>
+      <li>在主屏幕版里重新设置一次酒店位置。主屏幕版和浏览器版的数据是分开存的。</li>
+    </ol>
+    <p class="note">微信、小红书里直接点开的页面不能离线保存，请先点右上角“在浏览器打开”。</p>
+    <p class="note">没网时：全部内容、距离估算、示意图都能用；“导航”按钮要打开地图 App，建议出发前在 Google 地图里下载布达佩斯的离线地图。字体可能变成手机自带字体，不影响内容。</p>
+  </div>
+
+  <div class="panel" id="n-trap">
+    <h3>餐厅避坑清单</h3>
+    <ol>
+      <li><b>Váci utca 和多瑙河边</b>：门口拉客、多国语言配图菜单的店，价格贵很多。往旁边走一个街区就正常了。</li>
+      <li><b>没点的面包也收钱</b>：游客区有的店会端上面包，每人收 1,000–1,500 Ft。不要就当场推开。</li>
+      <li><b>服务费</b>：很多中高档和游客区餐厅在账单上加 10–15% 的 szervízdíj 或 felszolgálási díj。已经加了就不用再给小费；没加的话，服务好给 10% 左右。家常小馆（étkezde）、市场摊位一般不用给。</li>
+      <li><b>饮料单独算价</b>：坐下前先看包括饮料的完整菜单。</li>
+      <li><b>中央市场二楼</b>：有的摊位不标价，点之前先问价。</li>
+      <li><b>外卖 App</b>：Foodora 上同一家店的价格可能是店里的好几倍，比如 Frici Papa。</li>
+      <li><b>菜单价格是整齐的欧元换算</b>，多半是做游客生意的店。</li>
+    </ol>
+    <p><b>中国胃</b>：匈牙利菜以红椒粉（paprika）调味，炖菜多、偏咸偏油。最容易接受的有：牛肉汤 gulyásleves、红椒鸡 csirkepaprikás 配小面疙瘩 nokedli、炖牛肉 pörkölt、白菜卷 töltött káposzta、炸饼 lángos。甜点推荐 somlói galuska（海绵蛋糕配巧克力酱和奶油）、Dobos 蛋糕。</p>
+    <p><b>喝什么</b>：托卡伊甜白（Tokaji）、公牛血红酒（Bikavér）、葡萄酒兑苏打水 fröccs。</p>
+  </div>
+
+  <div class="panel" id="n-money">
+    <h3>钱</h3>
+    <ul>
+      <li>货币是<b>匈牙利福林 HUF（Ft）</b>，不是欧元。有的地方收欧元，但汇率很差。</li>
+      <li>刷卡几乎到处能用。家常小馆、市场摊位常常只收现金，身上备一些福林。</li>
+      <li><b>不用 Euronet 橙色 ATM</b>：手续费每次约 3–5 欧元，再加上汇率差，可能多付 10–15%。用银行的 ATM，比如 OTP、K&amp;H、Raiffeisen、UniCredit。机场到达厅有 Raiffeisen 的 ATM。</li>
+      <li>POS 机或 ATM 问用本币还是 HUF，<b>永远选 HUF</b>。</li>
+      <li>机场换汇点的汇率一般差 8–15%。正规换汇点和市场汇率的差距应在 1–2% 以内。不在街头换钱。</li>
+    </ul>
+  </div>
+
+  <div class="panel" id="n-safe">
+    <h3>安全</h3>
+    <p>布达佩斯整体很安全，美国国务院给的是最低级别的“正常注意”。针对游客的暴力犯罪很少，主要风险是<b>小偷和几种固定的骗局</b>。独自旅行的女生一个人吃饭、泡温泉都很常见。</p>
+    <ul>
+      <li><b>“请你喝酒”骗局（konzumlány）</b>：街上有“热情的本地人”带你去某家酒吧，酒水不报价，最后账单 8 万–20 万 Ft。多发在七区毁墟酒吧一带（Gozsdu Udvar、Kazinczy utca），晚上 10 点后最多。<b>只去自己选的酒吧</b>，第二轮之前先看价格。真遇到了：别签字、别交卡，拍下账单，去旅游警察报案。</li>
+      <li><b>小偷高发地</b>：4 路和 6 路电车、2 路电车、高峰期地铁、中央市场、东站（Keleti）、西站（Nyugati）、南站（Déli）。手机别放桌上，包背在前面。</li>
+      <li><b>其他套路</b>：塞手链再要钱、拉你签请愿书再要钱、假僧人募捐、温泉门口倒卖门票、国会和城堡附近自称能带你走“特殊通道”的无证导游。一律不理，继续走。</li>
+      <li><b>夜里少去</b>：八区（Józsefváros）远离市中心的部分、九区和十区外围。不是禁区，但晚上没必要去。</li>
+      <li><b>随身带护照原件</b>：非欧盟游客按规定要带护照，警察查验时复印件可能不被接受。</li>
+      <li>酒杯不离视线，先想好怎么回酒店，深夜叫 Bolt。</li>
+    </ul>
+  </div>
+
+  <div class="panel" id="n-sos">
+    <h3>紧急电话</h3>
+    <div>
+      <div class="phone"><div><div class="pn">112</div><div class="pl">通用紧急电话，有英语接线员</div></div><button class="btn copy" type="button" data-copy="112">复制</button></div>
+      <div class="phone"><div><div class="pn">107</div><div class="pl">警察</div></div><button class="btn copy" type="button" data-copy="107">复制</button></div>
+      <div class="phone"><div><div class="pn">104</div><div class="pl">急救（真正的急救不分国籍、不看保险）</div></div><button class="btn copy" type="button" data-copy="104">复制</button></div>
+      <div class="phone"><div><div class="pn">+36-30-6925414</div><div class="pl">中国驻匈牙利使馆领事保护应急电话</div></div><button class="btn copy" type="button" data-copy="+36306925414">复制</button></div>
+      <div class="phone"><div><div class="pn">+36-1-2113112</div><div class="pl">中国公民咨询电话（另一个号码 +36-1-2113113）</div></div><button class="btn copy" type="button" data-copy="+3612113112">复制</button></div>
+      <div class="phone"><div><div class="pn">+86-10-12308</div><div class="pl">外交部全球领事保护热线</div></div><button class="btn copy" type="button" data-copy="+861012308">复制</button></div>
+    </div>
+    <p class="note">使馆地址：Városligeti fasor 20-22, 1068 Budapest；领事部在 Benczúr utca 18。旅游警察：Sütő utca 2（Deák tér 附近），被多收钱、酒吧账单纠纷可以去这里。</p>
+  </div>
+
+  <div class="panel" id="n-bath">
+    <h3>泡温泉须知</h3>
+    <ul>
+      <li>开放中的三家：<b>塞切尼</b>（最大，适合第一次）、<b>鲁达什</b>（土耳其时代穹顶，屋顶泳池看多瑙河）、<b>卢卡奇</b>（本地人多、最便宜）。价格见“景点”。</li>
+      <li><b>鲁达什周二只对女性开放</b>（以官网为准），对女生很友好。</li>
+      <li>只在官方售票处或官网买票，门口倒卖的票可能是假的。</li>
+      <li>自带泳衣、拖鞋、毛巾；手机放防水袋。塞切尼周六下午最挤，早上或工作日去。</li>
+      <li>不确定未满 14 岁能不能进，带孩子的话先查官网。</li>
+    </ul>
+  </div>
+
+  <div class="panel" id="n-life">
+    <h3>生活和礼仪</h3>
+    <div class="words">
+      <div class="word"><b>Jó napot</b><span>你好（白天，进店先说）</span></div>
+      <div class="word"><b>Köszönöm</b><span>谢谢</span></div>
+      <div class="word"><b>Viszontlátásra</b><span>再见</span></div>
+      <div class="word"><b>A számlát, kérem</b><span>请买单</span></div>
+      <div class="word"><b>Csapvíz</b><span>自来水（可以直接喝）</span></div>
+    </div>
+    <ul>
+      <li>自来水可以喝，餐厅里可以点 csapvíz。</li>
+      <li>10–11 月白天大约 5–15°C，12 月常在零度上下。带外套、围巾，泡温泉出来别着凉。</li>
+      <li>3 月 15 日和 10 月 23 日是国庆节，国会附近常有集会，一般是和平的，绕开人群就好。</li>
+    </ul>
+  </div>
+
+  <div class="panel" id="n-visa">
+    <h3>签证</h3>
+    <ul>
+      <li>中国普通护照需要<b>申根 C 类签证</b>，费用 90 欧元。主要停留国是匈牙利的，向匈牙利签证中心申请。</li>
+      <li>申根入出境系统 <b>EES</b> 已在 2026 年 4 月 10 日全面启用，第一次入境要录指纹和照片。</li>
+      <li>ETIAS 只针对免签国家的游客，和中国护照无关。</li>
+    </ul>
+  </div>
+
+  <div class="panel" id="n-red">
+    <h3>小红书搜索建议</h3>
+    <ul>
+      <li>搜店时加“本地人”“避雷”“账单”“服务费”等关键词，重点看最近 3 个月的笔记。</li>
+      <li>旧攻略常见过时信息：盖勒特温泉（2028 年前关闭）、Ruszwurm 甜品店（2025 年 8 月关门）、Rosenstein 餐厅（2026 年 6 月起停业整修）、圣伊什特万大教堂“免费参观”（现在收费）。</li>
+      <li>很多笔记都在同一个机位拍同一道菜，基本就是网红店，按避坑清单自己判断。</li>
+    </ul>
+  </div>
+
+  <div class="panel" id="n-hist">
+    <h3>五分钟布达佩斯历史</h3>
+    <ol class="timeline">
+      <li><span class="yr">896</span><div>马扎尔人在首领阿尔帕德带领下进入喀尔巴阡盆地。<span class="see">去看：英雄广场的千年纪念碑</span></div></li>
+      <li><span class="yr">1000</span><div>伊什特万一世加冕为第一位匈牙利国王，让匈牙利皈依天主教。<span class="see">去看：圣伊什特万大教堂（供奉他的“圣右手”）</span></div></li>
+      <li><span class="yr">15 世纪</span><div>马加什国王时期，布达成为文艺复兴重镇。<span class="see">去看：马加什教堂（他的两次婚礼都在这里举行）</span></div></li>
+      <li><span class="yr">1541</span><div>奥斯曼帝国占领布达约 150 年，留下了土耳其浴场。1686 年哈布斯堡军队夺回布达。<span class="see">去看：鲁达什温泉的穹顶</span></div></li>
+      <li><span class="yr">1848</span><div>反对哈布斯堡统治的革命，3 月 15 日成为国庆节。次年第一座横跨多瑙河的永久桥梁链子桥通车。<span class="see">去看：链子桥</span></div></li>
+      <li><span class="yr">1873</span><div>布达、佩斯、老布达三城合并为布达佩斯。1896 年建国千年庆典，修建了欧洲大陆第一条地铁（今天的 M1 黄线）。国会大厦于 1904 年完工。<span class="see">去看：M1 地铁、国会大厦、安德拉什大街</span></div></li>
+      <li><span class="yr">1944</span><div>二战末期的布达佩斯围城战中，多瑙河上所有桥梁被炸毁，城堡严重损毁。<span class="see">去看：多瑙河岸边的铁鞋纪念</span></div></li>
+      <li><span class="yr">1956</span><div>反对苏联控制的起义被苏军镇压，10 月 23 日成为国庆节。</div></li>
+      <li><span class="yr">1989</span><div>10 月 23 日宣布成立匈牙利共和国，和平转型。2004 年加入欧盟。</div></li>
+    </ol>
+  </div>
+
+  <div class="panel" id="n-check">
+    <h3>出发前请再核对</h3>
+    <ul>
+      <li>国会大厦、温泉、渔人堡、圣伊什特万大教堂的价格来自 2026 年的资料，以官网为准。</li>
+      <li>马加什教堂 1,600 Ft、城堡缆车往返 5,000 Ft 这两个价格可能已经过时；犹太大会堂的票价没有查到可靠数字。</li>
+      <li>鲁达什温泉的男女专场时间各来源说法不一致。</li>
+      <li>家常小馆（étkezde）营业时间短、常只收现金，去之前在 Google 地图上看一眼。</li>
+      <li>米其林名单每年更新，订位前查官方指南。</li>
+      <li>本页距离按直线距离估算，实际路程请以地图 App 为准。</li>
+    </ul>
+  </div>
+</section>
+</main>
+
+<nav class="tabs" aria-label="栏目"><div class="tabs-in" role="tablist">
+  <button class="tabbtn" role="tab" data-tab="food" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2v8a2 2 0 0 1-1.5 1.94V22h-2V11.94A2 2 0 0 1 2 10V2h1.5v6H5V2h1.5v6H8V2zm9 0c2.2 0 4 2.5 4 6.5 0 2.4-1 4-2.5 4.6V22h-2V2.1A3 3 0 0 1 16 2z" fill="currentColor"/></svg>美食</button>
+  <button class="tabbtn" role="tab" data-tab="sights" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 21h20v-2h-1v-6h1l-3-4V6l-2-3-2 3v3h-2V6l-2-3-2 3v3H8V6L6 3 4 6v3l-3 4h1v6H2z" fill="currentColor"/></svg>景点</button>
+  <button class="tabbtn center" role="tab" data-tab="dist" type="button"><span class="ring"><svg viewBox="0 0 24 24" aria-hidden="true" width="22" height="22"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z" fill="currentColor"/></svg></span>距离</button>
+  <button class="tabbtn" role="tab" data-tab="go" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 2h2v2h3l1 2h-4l-1 2h4a3 3 0 0 1 3 3v6a2 2 0 0 1-2 2l1.5 3h-2.2L15 19H9l-1.3 3H5.5L7 19a2 2 0 0 1-2-2v-6a3 3 0 0 1 3-3h3l-1-2H6l1-2h4zM7 11v3h10v-3zm1 5.2a1 1 0 1 0 0 .1zm8 0a1 1 0 1 0 0 .1z" fill="currentColor"/></svg>出行</button>
+  <button class="tabbtn" role="tab" data-tab="notes" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm1 15h-2v-6h2zm0-8h-2V7h2z" fill="currentColor"/></svg>须知</button>
+</div></nav>
+
+<script>
+"use strict";
+/* ---------- data ---------- */
+const FOOD_TYPES = {all:"全部推荐",hun:"匈牙利家常菜",snack:"lángos 和小吃",cafe:"咖啡馆",asian:"想吃中餐亚洲菜",fine:"吃顿好的",hype:"小红书热门值不值"};
+const SIGHT_TYPES = {must:"必去",bath:"温泉",more:"顺路看",season:"圣诞季",trip:"一日游",photo:"拍照机位",plan:"行程建议"};
+const CITY = "Budapest";
+
+const P = [
+// 匈牙利家常菜
+{id:"frici",kind:"food",type:"hun",badge:"首选",name:"Frici Papa Kifőzdéje",zh:"老派家常小馆，便宜量大",area:"七区 VII",street:"Király utca",no:"55",lat:47.5033,lng:19.0627,
+ price:"红酒炖牛肉、红椒鸡各 1,099 Ft · 配菜 400–450 Ft",order:"红酒炖牛肉 pörkölt、红椒鸡 csirkepaprikás、甜点 somlói galuska（2,000 Ft）",
+ why:"传统 kifőzde（家常小馆），价格很低、分量大。",tip:"周一至周六 11:00–22:00，周日休息；厨房常在 20–21 点就停，晚饭早点去。面包另收费；外卖 App 上的价格贵好几倍。"},
+{id:"getto",kind:"food",type:"hun",name:"Gettó Gulyás",zh:"十几种炖菜轮换的炖菜馆",area:"犹太区 VII",street:"Wesselényi utca",no:"18",lat:47.4977,lng:19.0626,
+ price:"牛肉汤 2,500–4,000 Ft · 炖牛脸 3,500–4,500 Ft · 红椒鸡配面疙瘩 4,000–5,000 Ft",order:"炖菜 pörkölt（最多 14 种轮换）、牛肉汤 gulyásleves；工作日有便宜的当日套餐 napi menü",
+ why:"炖菜扎实，环境有气氛。在小红书上也有名，但口碑一直稳定。",tip:"每天约 12:00–23:00。晚餐要提前几天订位。素食选择少。"},
+{id:"kadar",kind:"food",type:"hun",name:"Kádár Étkezde",zh:"犹太区老食堂，2025 年重开",area:"犹太区 VII",street:"Klauzál tér",no:"9",lat:47.4985,lng:19.0663,
+ price:"招牌 sólet 配烟熏牛舌 3,670 Ft · 肝丸子汤 1,760 Ft",order:"sólet（犹太豆子焖肉）、肝丸子汤、甜点 aranygaluska",
+ why:"历史悠久的老食堂，2025 年 9 月重新开张，拼桌吃。",tip:"周二至周六营业，午餐 11:00–16:30，周日周一休息。可能只收现金，带福林。"},
+{id:"kisharang",kind:"food",type:"hun",name:"Kisharang Étkezde",zh:"大教堂旁的小铃铛食堂",area:"五区 V",street:"Október 6. utca",no:"17",lat:47.5017,lng:19.0507,
+ price:"当日两道菜 800–1,200 Ft · 汤 650–960 Ft",order:"当日套餐、蘑菇红椒炖 gombapaprikás、白菜卷 töltött káposzta",
+ why:"家庭经营，非常便宜，进门会摇一下小铃铛。",tip:"只收现金。只有 5–6 张桌子，可能要拼桌；分量偏小，出品偶尔不稳。门牌有时写成 14 号。"},
+{id:"pozsonyi",kind:"food",type:"hun",name:"Pozsonyi Kisvendéglő",zh:"住宅区里的老街坊馆子",area:"十三区 XIII",street:"Radnóti Miklós utca",no:"38",lat:47.5154,lng:19.0525,
+ price:"炖菜配面疙瘩 2,500–3,500 Ft · 汤 1,500–2,500 Ft",order:"pörkölt 配 galuska、Jókai 豆子汤",
+ why:"正宗街坊小馆，分量足，游客很少。",tip:"一般 11:30–23:00，去前打电话确认（+36-1-787-4877）。传统上只收现金，带福林最稳。中午常客满。"},
+{id:"disznotoros",kind:"food",type:"hun",name:"Belvárosi Disznótoros",zh:"肉铺式烤肠、烤鸭腿",area:"七区 VII",street:"Király utca",no:"1/D",lat:47.4985,lng:19.0560,
+ price:"一盘约 3,000–4,000 Ft",order:"三拼香肠（烤肠、血肠、肝肠）、脆皮烤鸭腿、酸黄瓜",
+ why:"传统肉铺吃法，很有本地气息。",tip:"左边柜台是做好的熟食，右边柜台现烤生肉。工作日午餐点单比较乱，店员简短直接。不适合素食者。"},
+{id:"kekrozsa",kind:"food",type:"hun",name:"Kék Rózsa Étterem",zh:"大犹太会堂后面的平价馆",area:"犹太区 VII",street:"Wesselényi utca",no:"",lat:47.4966,lng:19.0612,
+ price:"红椒鸡配面疙瘩 2,000 Ft · 大碗牛肉汤 1,400 Ft",order:"红椒鸡、牛肉汤、Mátrai Borzaska（土豆饼裹猪排），可以点半份",
+ why:"不讲究装修的平价食堂式小馆。",tip:"每天 12:00–20:00，厨房有时提前 1–2 小时停。晚上人多，最好订位。"},
+// 小吃
+{id:"retro",kind:"food",type:"snack",badge:"推荐",name:"Retró Lángos Büfé",zh:"酥脆炸饼 lángos",area:"六区 VI",street:"Bajcsy-Zsilinszky út",no:"25",lat:47.5040,lng:19.0545,
+ price:"奶酪酸奶油 lángos 3,490 Ft",order:"经典奶酪酸奶油（sajtos-tejfölös），面饼上抹蒜",
+ why:"出品稳定、一直很脆，也有无麸质版本。",tip:"两家店每天 11:00–22:00；另一家在国会旁的 Vécsey utca 3。饭点要排队。"},
+{id:"bors",kind:"food",type:"snack",name:"Bors GasztroBár",zh:"创意汤和法棍",area:"犹太区 VII",street:"Kazinczy utca",no:"10",lat:47.4964,lng:19.0628,
+ price:"汤约 2,060 Ft · 法棍约 4,120 Ft",order:"当日汤、法棍三明治",why:"有创意，价格合理。",tip:"每天约 11:30–21:00。排队长，几乎没座位，吃起来容易弄脏。"},
+{id:"hokedli",kind:"food",type:"snack",name:"Hokedli",zh:"新派匈牙利蔬菜糊 főzelék",area:"六区 VI",street:"Nagymező utca",no:"10",lat:47.5025,lng:19.0590,
+ price:"一份 1,500–2,500 Ft",order:"当日 főzelék，可以加肉饼 fasírt 或煎蛋",why:"清淡、素食友好，换换口味。",tip:"只开工作日午餐 11:30–15:30。"},
+{id:"fenyutca",kind:"food",type:"snack",name:"Lángos Land",zh:"布达本地市场里的大炸饼",area:"布达 · 二区",street:"Lövőház utca",no:"12",lat:47.5079,lng:19.0256,
+ price:"奶酪酸奶油 lángos 2,400 Ft",order:"土豆面团 lángos（krumplis）",why:"本地菜市场 Fény utcai piac 二楼，分量大价格实在。",tip:"跟着市场时间：工作日约 7:30–16:00，周六到 14:00，周日休息。很多摊位不收卡，带现金。"},
+// 咖啡馆
+{id:"central",kind:"food",type:"cafe",badge:"推荐",name:"Centrál Kávéház",zh:"本地人真正会去的老咖啡馆",area:"五区 V",street:"Károlyi utca",no:"9",lat:47.4917,lng:19.0566,
+ price:"浓缩 1,890 Ft · 蛋糕 2,790–2,890 Ft",order:"Dobos 蛋糕、Eszterházy 蛋糕、甜点拼盘（4,590 Ft）",
+ why:"历史老店，餐点认真，本地人常来。",tip:"周一、周二、周日 9:00–22:00，周三至周六到 24:00。官网可订位。"},
+{id:"muvesz",kind:"food",type:"cafe",name:"Művész Kávéház",zh:"歌剧院对面，最平价的老咖啡馆",area:"六区 VI",street:"Andrássy út",no:"29",lat:47.5031,lng:19.0592,
+ price:"浓缩 1,090 Ft · 卡布奇诺 1,450 Ft · 热巧克力 1,890 Ft",order:"咖啡加一块蛋糕",
+ why:"艺术圈常聚的地方，价格比其他大咖啡馆低很多。",tip:"每天 9:00–20:00。加 15% 服务费。"},
+// 亚洲
+{id:"biang",kind:"food",type:"asian",badge:"家乡味",name:"Biang Bisztró",zh:"西安面馆",area:"六区 VI · 八角广场",street:"Teréz körút",no:"20",lat:47.5050,lng:19.0636,
+ price:"面 3,680–5,580 Ft · 汤 1,480 Ft 起",order:"biangbiang 面、肉夹馍、凉皮",why:"在市中心，最方便的正宗中餐之一。",tip:"每天 11:30–21:30。"},
+{id:"monori",kind:"food",type:"asian",badge:"家乡味",name:"Monori Center",zh:"布达佩斯“唐人街”，十几家中餐",area:"十区 Kőbánya",street:"Jegenye utca",no:"",lat:47.4820,lng:19.1330,
+ price:"各店不同",order:"Spicy Fish 水煮鱼、辣子鸡；HeHe 牛肉面、担担面；In Town Hot Pot 火锅；大包饺子；泰和楼东北菜；Hong Kong Büfé 粥、油条、包子；DunaPanda 亚洲超市",
+ why:"批发市场里聚集了 18 家中餐馆和两家亚洲超市，口味最接近国内。",tip:"坐 3 路、28 路或 62 路电车，或 9 路公交，到 Kőbánya-Alsó（Mázsa tér），离市中心约 20–25 分钟。各店营业时间不同，去前查一下。在十区，晚上别逛太晚。"},
+{id:"wang",kind:"food",type:"asian",name:"Wang Mester",zh:"王师傅川菜",area:"十四区 Zugló",street:"Gizella út",no:"46/a",lat:47.5165,lng:19.1140,
+ price:"中等",order:"麻婆豆腐、宫保虾、手拉面、皮蛋",why:"本地华人推荐的川菜馆。",tip:"在城市公园东边，可以和塞切尼温泉安排在同一天。"},
+{id:"saigon",kind:"food",type:"asian",name:"Saigon Bistro",zh:"越南粉和粿条汤",area:"六区 VI",street:"Szondi utca",no:"",lat:47.5068,lng:19.0640,
+ price:"便宜到中等",order:"西贡粿条汤 hủ tiếu、越南粉 pho；蒸粉卷 bánh cuốn 只在周六供应（或提前打电话）",why:"汤头清，适合吃腻了炖菜的时候。",tip:"在西站和八角广场之间。"},
+// 吃顿好的
+{id:"n28",kind:"food",type:"fine",badge:"Bib Gourmand",name:"N28 Wine & Kitchen",zh:"米其林必比登，匈牙利西部风味",area:"六区 VI",street:"Nagymező utca",no:"28",lat:47.5048,lng:19.0606,
+ price:"主菜 9,550–10,950 Ft · 前菜 6,650–6,950 Ft",order:"每日更换的菜单，常有曼加利察猪肉 mangalica、鲶鱼",
+ why:"米其林 Bib Gourmand（性价比推荐）。",tip:"周二至周六，18:00 开始，21:30 停止点单。加 15% 服务费。"},
+{id:"borkonyha",kind:"food",type:"fine",badge:"米其林一星",name:"Borkonyha Wine Kitchen",zh:"以匈牙利葡萄酒为主的现代菜",area:"五区 V",street:"Sas utca",no:"3",lat:47.4988,lng:19.0526,
+ price:"主菜 9,550–24,950 Ft",order:"单点主菜配当地葡萄酒",why:"米其林一星，可以单点，不用吃整套品鉴菜单。",tip:"加 15% 服务费，建议订位。"},
+{id:"costes",kind:"food",type:"fine",badge:"米其林一星",name:"Costes",zh:"匈牙利第一家米其林星级餐厅",area:"九区 IX",street:"Ráday utca",no:"4",lat:47.4890,lng:19.0615,
+ price:"四道菜 39,500 Ft · 六道菜 51,500 Ft",order:"品鉴菜单",why:"适合特别的一顿。",tip:"加 15% 服务费；午餐时段比较好订。"},
+// 小红书热门里有地址的
+{id:"nyc",kind:"food",type:"hype",verdict:"warn",vlabel:"看一次，按计划去",name:"New York Café",zh:"“世界最美咖啡馆”",area:"七区 VII",street:"Erzsébet körút",no:"9-11",lat:47.4985,lng:19.0703,
+ text:"去的主要是看大厅。浓缩 2,975 Ft、Dobos 蛋糕 5,250 Ft、匈牙利午餐套餐 12,600 Ft，再加 15% 服务费，一桌只出一张账单。7–9 点或 22 点后人最少；晚餐和部分午餐可以在官网提前订位跳过排队。"},
+{id:"gerbeaud",kind:"food",type:"hype",verdict:"meh",vlabel:"只为热巧克力",name:"Gerbeaud",zh:"1858 年的老甜品店",area:"五区 V",street:"Vörösmarty tér",no:"7",lat:47.4968,lng:19.0507,
+ text:"热巧克力 4,550 Ft、蛋糕一块 4,490 Ft，另加 15% 服务费。不能订位，工作日傍晚去比较好。想吃蛋糕，Centrál 便宜不少。"},
+{id:"mamapaprika",kind:"food",type:"hype",verdict:"meh",vlabel:"不是骗局，但贵",name:"Mama Paprika / Goulash & Langosh Bar",zh:"多瑙河边的牛肉汤炸饼店",area:"五区 V",street:"Duna utca",no:"1",lat:47.4918,lng:19.0525,
+ text:"牛肉汤 6,990 Ft（Gettó Gulyás 3,090 Ft），lángos 5,490 Ft（Retró 3,490 Ft），另加 15% 服务费。多付的钱买的是河边位置和英文菜单。"},
+{id:"szimpla",kind:"food",type:"hype",verdict:"ok",vlabel:"值得，去喝一杯",name:"Szimpla Kert",zh:"最有名的毁墟酒吧",area:"犹太区 VII",street:"Kazinczy utca",no:"14",lat:47.4970,lng:19.0632,
+ text:"正规酒吧，直接去就好。坑在那些打着“免费 shots”的酒吧串游团带去的附属酒吧。吃的一般，先在附近吃完再来。"},
+{id:"market",kind:"food",type:"hype",verdict:"meh",vlabel:"逛可以，吃要问价",name:"Nagyvásárcsarnok",zh:"中央市场二楼小吃",area:"九区 IX",street:"Vámház körút",no:"1-3",lat:47.4871,lng:19.0583,
+ text:"lángos 1,500–3,000 Ft、牛肉汤 2,000–3,500 Ft，比外面贵，有的摊位不标价，先问价。一楼的菜市场、红椒粉值得逛。午饭时间非常挤，小心小偷。"}
+];
+
+const SIGHTS = [
+{id:"parliament",kind:"sight",type:"must",name:"Országház",zh:"国会大厦",area:"五区 V",street:"Kossuth Lajos tér",no:"1-3",lat:47.5072,lng:19.0458,q:"Hungarian Parliament Building Visitor Centre",
+ price:"非欧盟成人约 8,500 Ft；欧盟公民约 3,500 Ft；6 岁以下免费",hours:"英文导览约 8:00–18:00，约 45 分钟；国会开会和部分节日不开放",
+ best:"白天参观内部；晚上从对岸 Batthyány tér 看灯光",go:"地铁 M2 Kossuth Lajos tér；2 路电车",tip:"在官网 parlament.hu 至少提前 48 小时订票，有中文场但场次少。安检要预留 20–30 分钟。"},
+{id:"shoes",kind:"sight",type:"must",name:"Cipők a Duna-parton",zh:"多瑙河岸的铁鞋纪念",area:"五区 V",street:"Id. Antall József rakpart",no:"",lat:47.5045,lng:19.0446,q:"Shoes on the Danube Bank",
+ price:"免费",hours:"全天",best:"和国会一起看",go:"国会南边步行几分钟",tip:"纪念 1944–45 年在河边被枪杀的犹太人。请安静参观。"},
+{id:"basilica",kind:"sight",type:"must",name:"Szent István-bazilika",zh:"圣伊什特万大教堂",area:"五区 V",street:"Szent István tér",no:"1",lat:47.5009,lng:19.0539,q:"St. Stephen's Basilica",
+ price:"2025 年 12 月起收费：大厅 2,600 Ft，观景台加宝库 5,000 Ft，联票 6,800 Ft；学生和长者凭证件优惠",hours:"以官网为准",
+ best:"傍晚上观景台看夜景",go:"地铁 M1 Bajcsy-Zsilinszky út 或 M1/M2/M3 Deák Ferenc tér",tip:"大教堂里供奉伊什特万一世的“圣右手”。"},
+{id:"castle",kind:"sight",type:"must",name:"Budavári Palota",zh:"布达城堡（王宫）",area:"城堡山 I",street:"Szent György tér",no:"",lat:47.4962,lng:19.0397,q:"Buda Castle",
+ price:"城堡区散步免费；国家美术馆等博物馆另外买票",hours:"室外全天",best:"上午，或傍晚看多瑙河日落",go:"16 路公交从 Deák Ferenc tér 直达；或坐缆车（往返约 5,000 Ft）",tip:"城堡区有景区价餐厅，吃饭下山解决。"},
+{id:"bastion",kind:"sight",type:"must",name:"Halászbástya",zh:"渔人堡",area:"城堡山 I",street:"Szentháromság tér",no:"",lat:47.5022,lng:19.0347,q:"Fisherman's Bastion",
+ price:"下层平台和台阶任何时候免费；上层塔楼 1,700 Ft",hours:"上层 10 月–5 月 9:00–19:00 收费，6–9 月 9:00–21:00 收费；此外时间免费",
+ best:"早上 9 点前或傍晚，人少还免费",go:"16 路公交到 Szentháromság tér",tip:"免费的下层平台就能拍到国会全景，不一定要上塔楼。"},
+{id:"matthias",kind:"sight",type:"must",name:"Mátyás-templom",zh:"马加什教堂",area:"城堡山 I",street:"Szentháromság tér",no:"2",lat:47.5019,lng:19.0342,q:"Matthias Church Budapest",
+ price:"约 1,600 Ft（可能已调整），钟楼另收费",hours:"以官网为准",best:"和渔人堡一起",go:"16 路公交到 Szentháromság tér",tip:"彩色的 Zsolnay 瓷砖屋顶最出片。"},
+{id:"gellerthill",kind:"sight",type:"must",name:"Gellért-hegy · Citadella",zh:"盖勒特山和城堡要塞",area:"十一区 XI",street:"",no:"",lat:47.4869,lng:19.0470,q:"Citadella Budapest",
+ price:"山顶公园免费；要塞展览 4,900 Ft",hours:"公园 11–3 月开到 22:00，4–10 月开到 24:00；2026 年 4 月重新开放",
+ best:"日落，看整个多瑙河和七座桥",go:"从伊丽莎白桥西头爬上去约 30 分钟；或坐 27 路公交到 Búsuló Juhász 再走一段",tip:"夜景很美，但下山小路较暗，结伴走大路。"},
+{id:"chain",kind:"sight",type:"must",name:"Széchenyi Lánchíd",zh:"链子桥",area:"布达 ↔ 佩斯",street:"",no:"",lat:47.4990,lng:19.0436,q:"Széchenyi Chain Bridge",
+ price:"免费",hours:"全天",best:"晚上走一次，免费版“夜游多瑙河”",go:"步行",tip:"1849 年通车，二战被炸毁后重建。"},
+{id:"dohany",kind:"sight",type:"must",name:"Dohány utcai zsinagóga",zh:"大犹太会堂",area:"犹太区 VII",street:"Dohány utca",no:"2",lat:47.4958,lng:19.0607,q:"Dohány Street Synagogue",
+ price:"收费，以官网为准",hours:"周六和犹太节日关闭",best:"上午",go:"地铁 M2 Astoria",tip:"欧洲最大的犹太会堂。入口安检，注意着装。"},
+{id:"andrassy",kind:"sight",type:"more",name:"Andrássy út · Operaház",zh:"安德拉什大街和国家歌剧院",area:"六区 VI",street:"Andrássy út",no:"22",lat:47.5027,lng:19.0582,q:"Hungarian State Opera",
+ price:"外观免费",hours:"—",best:"白天散步，从大教堂一路走到英雄广场",go:"地铁 M1 Opera（走不动就坐 M1）",tip:"整条大街是世界遗产，地下就是欧洲大陆第一条地铁。"},
+{id:"heroes",kind:"sight",type:"more",name:"Hősök tere · Városliget",zh:"英雄广场和城市公园",area:"十四区",street:"Hősök tere",no:"",lat:47.5149,lng:19.0778,q:"Heroes' Square Budapest",
+ price:"免费",hours:"全天",best:"和塞切尼温泉安排在同一天",go:"地铁 M1 Hősök tere",tip:"公园里的沃伊达哈尼亚城堡（Vajdahunyad）很好拍。"},
+{id:"margaret",kind:"sight",type:"more",name:"Margit-sziget",zh:"玛格丽特岛",area:"多瑙河中",street:"",no:"",lat:47.5268,lng:19.0471,q:"Margaret Island",
+ price:"免费",hours:"全天",best:"天气好的下午散步",go:"4 路、6 路电车到 Margit híd",tip:"本地人跑步遛狗的地方，可以接着去 Pozsonyi 吃饭。"},
+{id:"centralmkt",kind:"sight",type:"more",name:"Nagyvásárcsarnok",zh:"中央市场",area:"九区 IX",street:"Vámház körút",no:"1-3",lat:47.4871,lng:19.0583,q:"Great Market Hall Budapest",
+ price:"免费入场",hours:"周一至五 6:00–18:00，周六 6:00–16:00，周日各来源说法不一",best:"工作日上午",go:"地铁 M4 Fővám tér",tip:"买红椒粉、香肠当伴手礼，比 Váci utca 便宜。"},
+// 温泉
+{id:"szechenyi",kind:"sight",type:"bath",badge:"第一次去选这家",name:"Széchenyi fürdő",zh:"塞切尼温泉",area:"城市公园",street:"Állatkerti körút",no:"9-11",lat:47.5187,lng:19.0817,q:"Széchenyi Thermal Bath",
+ price:"含储物柜：工作日 13,200 Ft，周末 14,800 Ft",hours:"以官网为准",best:"早上或工作日；周六下午最挤",go:"地铁 M1 Széchenyi fürdő",tip:"18 个池子，室外 38°C 热池，冬天泡最有气氛。只在官方售票处或官网买票。"},
+{id:"rudas",kind:"sight",type:"bath",badge:"周二女性专场",name:"Rudas fürdő",zh:"鲁达什温泉",area:"盖勒特山脚",street:"Döbrentei tér",no:"9",lat:47.4890,lng:19.0471,q:"Rudas Thermal Bath",
+ price:"周一至周四 12,000 Ft，周五至周日 15,000 Ft，节日 16,000 Ft",hours:"男女专场时间各来源不一，以官网为准",best:"傍晚泡屋顶泳池看多瑙河",go:"伊丽莎白桥西头",tip:"16 世纪土耳其穹顶。周二为女性专场，周三男性专场（以官网为准）。"},
+{id:"lukacs",kind:"sight",type:"bath",name:"Lukács fürdő",zh:"卢卡奇温泉",area:"布达 · 二区",street:"Frankel Leó út",no:"25-29",lat:47.5195,lng:19.0372,q:"Lukács Thermal Bath",
+ price:"周一至周四 7,000 Ft，周五至周日 8,000 Ft",hours:"每天 7:00–19:00，周二到 22:00",best:"想清静的时候",go:"4 路、6 路电车到 Margit híd 布达一侧，再走几分钟",tip:"本地人多、游客少，最便宜。"},
+// 圣诞
+{id:"xmasbas",kind:"sight",type:"season",name:"Advent Bazilika",zh:"大教堂圣诞集市",area:"五区 V",street:"Szent István tér",no:"",lat:47.5006,lng:19.0535,q:"St. Stephen's Basilica",
+ price:"免费入场",hours:"2026/11/13–2027/1/1；周日至周四 11:00–22:00，周五周六到 23:00",best:"17:30 前到，看大教堂外墙灯光秀",go:"地铁 M1 Bajcsy-Zsilinszky út",tip:"看完灯光秀走 10 分钟去 Vörösmarty tér。"},
+{id:"xmasvor",kind:"sight",type:"season",name:"Vörösmarty Classic Xmas",zh:"弗洛斯马提广场圣诞集市",area:"五区 V",street:"Vörösmarty tér",no:"",lat:47.4964,lng:19.0503,q:"Vörösmarty tér",
+ price:"免费入场",hours:"2026/11/13–12/31；周日至周四 11:00–21:00，周五周六到 22:00",best:"工作日上午人少",go:"地铁 M1 Vörösmarty tér",tip:"手工艺摊位最多。集市小吃是游客价，吃点小吃，正餐去附近。"},
+// 一日游
+{id:"szentendre",kind:"sight",type:"trip",badge:"最近",name:"Szentendre",zh:"圣安德烈艺术小镇",area:"多瑙河湾",street:"",no:"",lat:47.6694,lng:19.0756,q:"Szentendre",
+ price:"—",hours:"—",best:"天气好的半天",go:"Batthyány tér 坐 H5 郊区火车约 40 分钟；出市界要另买延伸段车票",tip:"彩色小街、河边散步，适合半天。"},
+{id:"eger",kind:"sight",type:"trip",name:"Eger",zh:"埃格尔",area:"匈牙利北部",street:"",no:"",lat:47.9025,lng:20.3772,q:"Eger",
+ price:"—",hours:"—",best:"住一晚更从容",go:"火车约 2 小时",tip:"城堡加葡萄酒谷（Szépasszony-völgy），公牛血红酒的产地。"},
+// 交通点
+{id:"deak",kind:"transit",type:"transit",name:"Deák Ferenc tér",zh:"Deák 广场（三条地铁换乘）",area:"五区 V",street:"",no:"",lat:47.4979,lng:19.0547,q:"Deák Ferenc tér"},
+{id:"keleti",kind:"transit",type:"transit",name:"Keleti pályaudvar",zh:"东站",area:"八区 VIII",street:"",no:"",lat:47.5003,lng:19.0839,q:"Budapest Keleti"},
+{id:"batthyany",kind:"transit",type:"transit",name:"Batthyány tér",zh:"Batthyány 广场（H5 去圣安德烈）",area:"布达 · 一区",street:"",no:"",lat:47.5068,lng:19.0390,q:"Batthyány tér"},
+{id:"airport",kind:"transit",type:"transit",name:"Liszt Ferenc repülőtér",zh:"布达佩斯机场",area:"十八区",street:"",no:"",lat:47.4335,lng:19.2618,q:"Budapest Airport"}
+];
+P.push(...SIGHTS);
+const BY = Object.fromEntries(P.map(p=>[p.id,p]));
+
+const HYPE = [
+ {ref:"nyc"},
+ {t:"渔人堡上层塔楼",v:"meh",l:"下层免费就够",x:"上层 1,700 Ft，免费的下层平台和台阶任何时候都能拍到国会全景。早上 9 点前去，上层也免费、人还少。",ref2:"bastion"},
+ {ref:"gerbeaud"},
+ {t:"Kürtőskalács 烟囱卷",v:"ok",l:"可以吃",x:"这是匈牙利（特兰西瓦尼亚）的传统点心，和布拉格的不一样，可以放心吃。挑现烤的；Váci utca 和圣诞集市上的摊位偏贵。"},
+ {ref:"mamapaprika"},
+ {ref:"market"},
+ {ref:"szimpla"},
+ {ref:"getto",v:"ok",l:"值得",x:"小红书上很火，但出品稳定、价格正常。晚餐提前几天订位。"},
+ {t:"多瑙河游船",v:"meh",l:"看清楚再订",x:"主要公司白天约 20 欧、晚上约 25 欧。注意船上餐饮价格。不想坐船，晚上走一次链子桥也能看到夜景。"},
+ {t:"塞切尼温泉",v:"ok",l:"值得泡一次",x:"只在官方售票处或官网买票，门口倒卖的票可能是假的。周六下午最挤。"},
+ {t:"观光巴士 Hop-on Hop-off",v:"skip",l:"不划算",x:"比 72 小时公交通票（5,750 Ft）还贵。坐 2 路电车沿河看风景更省。"}
+];
+
+const PHOTO = [
+ ["渔人堡下层平台","早上 9 点前，免费，国会全景。","bastion"],
+ ["对岸看国会夜景","布达一侧 Batthyány tér 河边，灯光亮起后。","batthyany"],
+ ["盖勒特山顶","日落时看多瑙河和一排桥。","gellerthill"],
+ ["链子桥夜景","晚上走到桥中间，回头拍城堡。","chain"],
+ ["圣伊什特万大教堂观景台","傍晚上去看城市夜景（门票 5,000 Ft 起）。","basilica"],
+ ["马加什教堂瓷砖屋顶","彩色 Zsolnay 瓷砖，和渔人堡一起拍。","matthias"],
+ ["New York Café 大厅","早上 7–9 点人最少。","nyc"],
+ ["大教堂圣诞集市","11/13 起，17:30 外墙灯光秀。","xmasbas"]
+];
+
+const DAYS = [
+ {n:"Day 1",t:"佩斯：国会和大教堂",note:"国会要提前在官网订票。",stops:[["parliament","上午参观国会大厦（已订票）"],["shoes","多瑙河岸的铁鞋纪念"],["kisharang","午饭 Kisharang 小食堂（带现金）"],["basilica","圣伊什特万大教堂，上观景台"],["muvesz","安德拉什大街，Művész 咖啡歇脚"],["frici","晚饭 Frici Papa（早点去）"],["chain","晚上走一次链子桥看夜景"]]},
+ {n:"Day 2",t:"布达：城堡山和盖勒特山",stops:[["bastion","一早 16 路公交上山，渔人堡（9 点前免费）"],["matthias","马加什教堂"],["castle","布达城堡区散步"],["chain","走下山，过链子桥"],["gellerthill","下午爬盖勒特山看日落"],["rudas","晚上泡鲁达什温泉（周二女性专场）"]]},
+ {n:"Day 3",t:"市场、犹太区和毁墟酒吧",note:"大犹太会堂周六关门，Kádár 周日周一不开。",stops:[["centralmkt","上午逛中央市场一楼"],["central","Centrál 咖啡馆吃蛋糕"],["dohany","大犹太会堂"],["kadar","午饭 Kádár 老食堂"],["getto","晚饭 Gettó Gulyás（订位）"],["szimpla","Szimpla Kert 喝一杯"]]},
+ {n:"Day 4",t:"城市公园和塞切尼温泉",stops:[["heroes","英雄广场、沃伊达哈尼亚城堡"],["szechenyi","塞切尼温泉泡半天"],["wang","晚饭想吃中餐：王师傅川菜"],["n28","或者：N28 吃顿好的（周二至周六）"]]},
+ {n:"Day 5",t:"可选：圣安德烈或唐人街",note:"不出城的话：去 Monori Center 吃中餐、逛亚洲超市，再去玛格丽特岛散步，晚饭 Pozsonyi。",noroute:true,stops:[["batthyany","Batthyány tér 坐 H5 郊区火车"],["szentendre","圣安德烈小镇半天"]]}
+];
+
+const PRESETS = [
+ {label:"Deák 广场附近",lat:47.4979,lng:19.0547},
+ {label:"大教堂附近",lat:47.5009,lng:19.0539},
+ {label:"国会附近",lat:47.5060,lng:19.0490},
+ {label:"犹太区（七区）",lat:47.4980,lng:19.0640},
+ {label:"Astoria / 博物馆附近",lat:47.4935,lng:19.0600},
+ {label:"八角广场 Oktogon",lat:47.5052,lng:19.0634},
+ {label:"城堡山",lat:47.5010,lng:19.0350},
+ {label:"布达河边 Batthyány tér",lat:47.5068,lng:19.0390},
+ {label:"东站附近",lat:47.5003,lng:19.0839},
+ {label:"机场附近",lat:47.4335,lng:19.2618}
+];
+
+/* ---------- storage ---------- */
+const store = {
+ get(k,d){try{const v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(e){return d}},
+ set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+};
+const EXAMPLE = {lat:47.4979,lng:19.0547,label:"Deák 广场附近",example:true};
+let hotel = store.get("bud-hotel", null) || EXAMPLE;
+let favs = new Set(store.get("bud-favs", []));
+const S = {tab:"food",food:"all",sight:"must",dist:"all",foodNear:false,sightNear:false,sel:null,pending:null,q:""};
+S.tab = store.get("bud-tab","food");
+const h0 = (location.hash||"").replace("#","");
+if (["food","sights","dist","go","notes"].includes(h0)) S.tab = h0;
+
+/* ---------- helpers ---------- */
+const $ = s => document.querySelector(s);
+const esc = s => String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function hav(a,b){const R=6371,r=Math.PI/180;const dLa=(b.lat-a.lat)*r,dLo=(b.lng-a.lng)*r;const x=Math.sin(dLa/2)**2+Math.cos(a.lat*r)*Math.cos(b.lat*r)*Math.sin(dLo/2)**2;return 2*R*Math.asin(Math.sqrt(x));}
+function fmtD(d){if(d<1)return Math.max(10,Math.round(d*100)*10)+" m";if(d<10)return d.toFixed(1)+" km";return Math.round(d)+" km";}
+function advise(d){
+ const walk=Math.round(d*1.3/4.5*60);
+ if(d<0.9) return {cls:"walk",label:"走路就到",note:`步行约 ${walk} 分钟`};
+ if(d<2.2) return {cls:"walk",label:"步行或坐电车",note:`步行约 ${walk} 分钟；不想走就坐 1–3 站`};
+ if(d<8){const t=Math.round(d*1.35/18*60+8);return {cls:"transit",label:"坐地铁 / 电车",note:`公共交通约 ${t} 分钟（含等车），走路要 ${walk} 分钟`};}
+ if(d<35){const t=Math.round(d*1.3/25*60+12);return {cls:"transit",label:"公交换乘，或 Bolt",note:`公共交通约 ${t} 分钟`};}
+ return {cls:"far",label:"一日游距离",note:"坐火车或郊区火车，见景点里的交通说明"};
+}
+function qOf(p){return p.q || [p.name, p.street ? (p.street+(p.no?" "+p.no:"")) : "", CITY].filter(Boolean).join(", ");}
+function navUrl(p,mode){return `https://www.google.com/maps/dir/?api=1&origin=${hotel.lat},${hotel.lng}&destination=${encodeURIComponent(qOf(p))}&travelmode=${mode}`;}
+function navUrlCoord(c,mode){return `https://www.google.com/maps/dir/?api=1&origin=${hotel.lat},${hotel.lng}&destination=${c.lat},${c.lng}&travelmode=${mode}`;}
+function norm(s){return String(s||"").normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase();}
+
+function parseCoords(t){
+ if(!t) return null; t=t.trim();
+ const pats=[/!3d(-?\d+(?:\.\d+)?)!4d(-?\d+(?:\.\d+)?)/,/@(-?\d+\.\d+),\s*(-?\d+\.\d+)/,
+  /[?&](?:q|ll|sll|query|destination|daddr|coordinate|center)=(-?\d+\.\d+)(?:,|%2C)\s*(-?\d+\.\d+)/i,
+  /(-?\d{1,2}\.\d{3,})\s*[,，]\s*(-?\d{1,3}\.\d{3,})/,/(-?\d{1,2}\.\d{3,})\s+(-?\d{1,3}\.\d{3,})/];
+ for(const r of pats){const m=t.match(r);if(m){const lat=+m[1],lng=+m[2];if(Math.abs(lat)<=90&&Math.abs(lng)<=180)return {lat,lng};}}
+ const d=t.match(/(\d+)°\s*(\d+)['′]\s*([\d.]+)["″]?\s*([NS])[\s,，]*(\d+)°\s*(\d+)['′]\s*([\d.]+)["″]?\s*([EW])/i);
+ if(d){let lat=+d[1]+d[2]/60+d[3]/3600,lng=+d[5]+d[6]/60+d[7]/3600;if(/s/i.test(d[4]))lat=-lat;if(/w/i.test(d[8]))lng=-lng;return {lat,lng};}
+ return null;
+}
+function parseError(t){
+ if(/goo\.gl|maps\.app/i.test(t)) return "这是分享短链接，里面没有坐标。请在浏览器打开它，复制地址栏里的完整链接；或者在地图里长按酒店，复制坐标。";
+ return "没认出坐标。请粘贴形如 47.4979, 19.0547 的坐标，或 Google 地图的完整链接。";
+}
+const CENTER={lat:47.4979,lng:19.0547};
+const CENTER_NAME="Deák 广场";
+
+/* ---------- favorites ---------- */
+function favBtn(p){
+ const on=favs.has(p.id);
+ return `<button class="fav" type="button" data-fav="${p.id}" aria-pressed="${on}" aria-label="${on?"移出想去清单":"加入想去清单"}"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.8z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>${on?"想去":""}</button>`;
+}
+function toggleFav(id){favs.has(id)?favs.delete(id):favs.add(id);store.set("bud-favs",[...favs]);renderAll();}
+
+/* ---------- card ---------- */
+function distBlock(p){
+ const d=hav(hotel,p),a=advise(d);
+ return `<div class="dist ${a.cls}"><span class="km">${fmtD(d)}</span><span class="how"><b>${a.label}</b><span>${a.note}</span></span></div>`;
+}
+function addrLine(p){
+ const plate=p.no?`<span class="plate">${esc(p.no)}</span>`:"";
+ const st=p.street?`<span class="addr">${esc(p.street)} ${plate}</span>`:"";
+ return `<div class="meta">${st}<span>${esc(p.area)}</span>${p.badge?`<span class="tag">${esc(p.badge)}</span>`:""}</div>`;
+}
+function actions(p,noMap){
+ const d=hav(hotel,p),walk=d<2.5,far=d>35;
+ const primary=walk?["walking","步行导航"]:["transit","公交导航"];
+ const second=walk?["transit","公交导航"]:["walking","步行导航"];
+ return `<div class="actions">
+  <a class="btn primary" href="${navUrl(p,far?"transit":primary[0])}" target="_blank" rel="noopener">${far?"查看路线":primary[1]}</a>
+  ${far?"":`<a class="btn" href="${navUrl(p,second[0])}" target="_blank" rel="noopener">${second[1]}</a>`}
+  ${noMap?"":`<button class="btn" type="button" data-onmap="${p.id}">地图上看</button>`}</div>`;
+}
+function foodCard(p){
+ return `<article class="place"><div class="place-top"><span class="sign">${esc(p.name)}</span>${favBtn(p)}</div>
+  <p class="zh">${esc(p.zh)}</p>${addrLine(p)}
+  <dl class="facts"><div><dt>价位</dt><dd>${esc(p.price)}</dd></div><div><dt>必点</dt><dd>${esc(p.order)}</dd></div></dl>
+  <details class="more"><summary>为什么靠谱 · 提醒</summary><dl class="facts"><div><dt>靠谱在</dt><dd>${esc(p.why)}</dd></div><div><dt>提醒</dt><dd>${esc(p.tip)}</dd></div></dl></details>
+  ${distBlock(p)}${actions(p)}</article>`;
+}
+function sightCard(p){
+ return `<article class="place"><div class="place-top"><span class="sign">${esc(p.name)}</span>${favBtn(p)}</div>
+  <p class="zh">${esc(p.zh)}</p>${addrLine(p)}
+  <dl class="facts"><div><dt>门票</dt><dd>${esc(p.price)}</dd></div><div><dt>时间</dt><dd>${esc(p.hours)}</dd></div></dl>
+  <details class="more"><summary>最佳时段 · 交通 · 提醒</summary><dl class="facts"><div><dt>最佳</dt><dd>${esc(p.best)}</dd></div><div><dt>交通</dt><dd>${esc(p.go)}</dd></div><div><dt>提醒</dt><dd>${esc(p.tip)}</dd></div></dl></details>
+  ${distBlock(p)}${actions(p)}</article>`;
+}
+const VCLS={ok:"v-ok",warn:"v-warn",meh:"v-meh",skip:"v-skip"};
+function hypeRow(h){
+ const p=h.ref?BY[h.ref]:(h.ref2?BY[h.ref2]:null);
+ const v=h.v||p.verdict, l=h.l||p.vlabel, x=h.x||p.text, t=h.t||(p.name+" · "+p.zh);
+ return `<div class="hype-row"><div class="hype-head"><h3>${esc(t)}</h3><span class="verdict ${VCLS[v]}">${esc(l)}</span></div><p>${esc(x)}</p>${p?distBlock(p)+actions(p):""}</div>`;
+}
+
+/* ---------- renderers ---------- */
+function chipRow(el,types,cur,key){
+ el.innerHTML=Object.entries(types).map(([k,v])=>`<button class="chip" type="button" data-${key}="${k}" aria-pressed="${k===cur}">${v}</button>`).join("");
+}
+function sortNear(list,on){return on?list.slice().sort((a,b)=>hav(hotel,a)-hav(hotel,b)):list;}
+function renderFood(){
+ chipRow($("#foodChips"),FOOD_TYPES,S.food,"food");
+ $("#foodNear").checked=S.foodNear;
+ $("#foodNear").parentElement.hidden=S.food==="hype";
+ if(S.food==="hype"){$("#foodList").innerHTML=`<p class="lead">小红书上常见的店和吃法，逐个说值不值。</p>`+HYPE.map(hypeRow).join("");return;}
+ const list=P.filter(p=>p.kind==="food"&&p.type!=="hype"&&(S.food==="all"||p.type===S.food));
+ $("#foodList").innerHTML=sortNear(list,S.foodNear).map(foodCard).join("");
+}
+function renderSights(){
+ chipRow($("#sightChips"),SIGHT_TYPES,S.sight,"sight");
+ $("#sightNear").checked=S.sightNear;
+ $("#sightNearWrap").hidden=S.sight==="photo"||S.sight==="plan";
+ if(S.sight==="photo"){
+  $("#sightList").innerHTML=`<p class="lead">人少又好看的机位优先。点名字看离酒店多远。</p><div class="rows">`+PHOTO.map(([t,x,id])=>{const p=BY[id],d=hav(hotel,p),a=advise(d);
+   return `<button class="row ${a.cls}" type="button" data-onmap="${id}"><span class="rn">${esc(t)}<small style="text-transform:none;font-family:var(--f-body);letter-spacing:0">${esc(x)}</small></span><span class="rd">${fmtD(d)}<small>${a.label}</small></span></button>`}).join("")+`</div>`;
+  return;
+ }
+ if(S.sight==="plan"){
+  $("#sightList").innerHTML=`<p class="lead">按区域排 4–5 天。每站右边是离你酒店的距离。</p>`+DAYS.map(day=>{
+   const ids=day.stops.map(s=>s[0]);
+   let route="";
+   if(!day.noroute){
+    const last=BY[ids[ids.length-1]],mid=ids.slice(0,-1).map(i=>encodeURIComponent(qOf(BY[i]))).join("%7C");
+    route=`<div class="actions"><a class="btn" href="https://www.google.com/maps/dir/?api=1&origin=${hotel.lat},${hotel.lng}&destination=${encodeURIComponent(qOf(last))}&waypoints=${mid}&travelmode=walking" target="_blank" rel="noopener">在 Google 地图看这天的路线</a></div>`;
+   }
+   return `<div class="day"><div class="day-h"><span class="dn">${day.n}</span><h3>${esc(day.t)}</h3></div>
+    <ol class="stops">${day.stops.map(([id,txt])=>`<li><span>${esc(txt)}</span><span class="sd">${fmtD(hav(hotel,BY[id]))}</span></li>`).join("")}</ol>
+    ${day.note?`<p class="note">${esc(day.note)}</p>`:""}${route}</div>`;}).join("");
+  return;
+ }
+ const list=P.filter(p=>p.kind==="sight"&&p.type===S.sight);
+ $("#sightList").innerHTML=sortNear(list,S.sightNear).map(sightCard).join("");
+}
+
+/* ---------- hotel ---------- */
+function renderHotel(){
+ $("#hotelChip").classList.toggle("example",!!hotel.example);
+ $("#hotelChipText").textContent=hotel.example?"示例位置 · 设置酒店":(hotel.label||"我的酒店");
+ $("#hotelName").textContent=hotel.example?`示例：${hotel.label}`:(hotel.label||"我的酒店");
+ $("#hotelCoord").textContent=(hotel.example?"换成你的酒店后，全站距离会自动更新 · ":"")+`${hotel.lat.toFixed(5)}, ${hotel.lng.toFixed(5)} · 离${CENTER_NAME} ${fmtD(hav(hotel,CENTER))}`;
+ $("#presets").innerHTML=PRESETS.map((p,i)=>`<button class="chip" type="button" data-preset="${i}">${p.label}</button>`).join("");
+}
+function setHotel(h,msg){hotel=h;store.set("bud-hotel",h);showMsg(msg||"已保存。全站距离已按新位置更新。",hav(h,CENTER)>25?"warn":"ok",h);renderAll();}
+function showMsg(text,kind,h){
+ const m=$("#hotelMsg");let t=text;
+ if(h&&hav(h,CENTER)>25) t+=` 注意：这个位置离${CENTER_NAME} ${fmtD(hav(h,CENTER))}，确认没粘错？`;
+ m.textContent=t;m.className="msg "+kind;m.hidden=false;
+}
+
+/* ---------- map ---------- */
+const MAP={lat0:47.5310,lat1:47.4790,lng0:19.0230,lng1:19.0900,W:500};
+const KMLNG=111.32*Math.cos(47.5*Math.PI/180);
+MAP.H=Math.round(MAP.W*((MAP.lat0-MAP.lat1)*111.2)/((MAP.lng1-MAP.lng0)*KMLNG));
+const proj=(lat,lng)=>[(lng-MAP.lng0)/(MAP.lng1-MAP.lng0)*MAP.W,(MAP.lat0-lat)/(MAP.lat0-MAP.lat1)*MAP.H];
+const inMap=p=>p.lat<=MAP.lat0&&p.lat>=MAP.lat1&&p.lng>=MAP.lng0&&p.lng<=MAP.lng1;
+const RIVER=[[47.5320,19.0500],[47.5205,19.0466],[47.5137,19.0450],[47.5070,19.0432],[47.5025,19.0428],[47.4990,19.0435],[47.4945,19.0460],[47.4905,19.0490],[47.4855,19.0545],[47.4810,19.0600],[47.4770,19.0645]];
+const ISLAND=[[47.5300,19.0478],[47.5240,19.0455],[47.5180,19.0452],[47.5150,19.0470],[47.5180,19.0492],[47.5240,19.0498],[47.5300,19.0500]];
+const LABELS=[["布达 Buda",47.5115,19.0300],["佩斯 Pest",47.5110,19.0700],["城堡山",47.4985,19.0330],["盖勒特山",47.4840,19.0405],["犹太区",47.4955,19.0670],["城市公园",47.5130,19.0835],["玛格丽特岛",47.5225,19.0560],["多瑙河",47.4935,19.0418]];
+function renderMap(){
+ const svg=$("#map"),W=MAP.W,H=MAP.H;
+ svg.setAttribute("viewBox",`0 0 ${W} ${H}`);
+ const pathOf=pts=>pts.map((c,i)=>{const [x,y]=proj(c[0],c[1]);return (i?"L":"M")+x.toFixed(1)+" "+y.toFixed(1)}).join(" ");
+ let out=`<rect width="${W}" height="${H}" fill="var(--map-bg)"/>`;
+ out+=`<path d="${pathOf(RIVER)}" fill="none" stroke="var(--river)" stroke-width="26" stroke-linecap="round" stroke-linejoin="round"/>`;
+ out+=`<path d="${pathOf(ISLAND)} Z" fill="var(--map-bg)" stroke="none"/>`;
+ out+=LABELS.map(([t,la,ln])=>{const [x,y]=proj(la,ln);const rot=t==="多瑙河"?`transform="rotate(-70 ${x} ${y})"`:"";return `<text x="${x}" y="${y}" fill="var(--map-ink)" font-size="${t==="多瑙河"||t==="玛格丽特岛"?11:13}" text-anchor="middle" font-family="var(--f-body)" ${rot}>${t}</text>`}).join("");
+ const km=W/((MAP.lng1-MAP.lng0)*KMLNG);
+ out+=`<g transform="translate(14 ${H-16})"><path d="M0 0h${km.toFixed(1)}M0 -5v5M${km.toFixed(1)} -5v5" stroke="var(--map-ink)" stroke-width="1.5" fill="none"/><text x="${(km/2).toFixed(1)}" y="-7" fill="var(--map-ink)" font-size="11" text-anchor="middle" font-family="var(--f-sign)">1 km</text></g>`;
+ const seen=new Set();
+ const pts=P.filter(p=>p.kind!=="transit"&&inMap(p)&&!["xmasbas","xmasvor","centralmkt"].includes(p.id));
+ const sel=S.sel?(BY[S.sel]||S.sel):null;
+ if(sel&&inMap(hotel)&&inMap(sel)){
+  const [x1,y1]=proj(hotel.lat,hotel.lng),[x2,y2]=proj(sel.lat,sel.lng);
+  out+=`<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="var(--ink)" stroke-width="2" stroke-dasharray="6 5"/>`;
+  const mx=(x1+x2)/2,my=(y1+y2)/2;
+  out+=`<rect x="${mx-30}" y="${my-12}" width="60" height="22" rx="6" fill="var(--ink)"/><text x="${mx}" y="${my+4}" fill="var(--bg)" font-size="14" font-weight="700" text-anchor="middle" font-family="var(--f-sign)">${fmtD(hav(hotel,sel))}</text>`;
+ }
+ out+=pts.map(p=>{const [x,y]=proj(p.lat,p.lng);const on=S.sel===p.id,fav=favs.has(p.id);
+  const mark=p.kind==="food"?`<circle cx="${x}" cy="${y}" r="${on?7.5:5}" fill="var(--red)" stroke="var(--surface)" stroke-width="${fav?2.5:1.5}"/>`
+   :`<rect x="${x-(on?7:4.5)}" y="${y-(on?7:4.5)}" width="${on?14:9}" height="${on?14:9}" fill="var(--blue)" stroke="var(--surface)" stroke-width="${fav?2.5:1.5}"/>`;
+  return `<g data-id="${p.id}" style="cursor:pointer"><title>${esc(p.zh)} ${esc(p.name)}</title><circle cx="${x}" cy="${y}" r="13" fill="transparent"/>${mark}</g>`}).join("");
+ if(sel&&!sel.id&&inMap(sel)){const [x,y]=proj(sel.lat,sel.lng);out+=`<path d="M${x} ${y-9}L${x+8} ${y}L${x} ${y+9}L${x-8} ${y}Z" fill="var(--warn)" stroke="var(--surface)" stroke-width="1.5"/>`;}
+ if(S.pending){const [x,y]=proj(S.pending.lat,S.pending.lng);out+=`<circle cx="${x}" cy="${y}" r="10" fill="none" stroke="var(--ink)" stroke-width="2" stroke-dasharray="3 3"/>`;}
+ if(inMap(hotel)){const [x,y]=proj(hotel.lat,hotel.lng);
+  out+=`<g pointer-events="none"><circle cx="${x}" cy="${y}" r="10" fill="var(--ink)" stroke="var(--surface)" stroke-width="2"/><path d="M${x-5} ${y+4}v-5l5-4 5 4v5z" fill="var(--surface)"/><text x="${x+14}" y="${y+4}" font-size="12" font-weight="700" fill="var(--ink)" font-family="var(--f-body)" paint-order="stroke" stroke="var(--map-bg)" stroke-width="3">酒店</text></g>`;}
+ svg.innerHTML=out;
+ $("#offmap").textContent=inMap(hotel)?"":"你的酒店在示意图范围外，距离照常计算";
+ const pb=$("#pending");
+ if(S.pending){pb.hidden=false;pb.innerHTML=`<span>把酒店设在这里？离${CENTER_NAME} ${fmtD(hav(S.pending,CENTER))}</span><span class="actions"><button class="btn" type="button" id="pendOk">设为酒店</button><button class="btn ghost" type="button" id="pendNo">取消</button></span>`;}
+ else pb.hidden=true;
+ const sc=$("#selCard");
+ if(!sel){sc.innerHTML=`<p class="note">还没选目的地。点地图上的点，或在下面搜索。</p>`;return;}
+ if(sel.id){
+  sc.innerHTML=`<div class="place-top"><span class="sign">${esc(sel.name)}</span>${favBtn(sel)}</div><p class="zh">${esc(sel.zh)}</p>${addrLine(sel)}${distBlock(sel)}${actions(sel,true)}`;
+ } else {
+  const d=hav(hotel,sel),a=advise(d);
+  sc.innerHTML=`<p class="zh">自定义目的地 · ${sel.lat.toFixed(5)}, ${sel.lng.toFixed(5)}</p><div class="dist ${a.cls}"><span class="km">${fmtD(d)}</span><span class="how"><b>${a.label}</b><span>${a.note}</span></span></div><div class="actions"><a class="btn primary" href="${navUrlCoord(sel,"walking")}" target="_blank" rel="noopener">步行导航</a><a class="btn" href="${navUrlCoord(sel,"transit")}" target="_blank" rel="noopener">公交导航</a></div>`;
+ }
+}
+function svgPoint(e){const svg=$("#map"),pt=svg.createSVGPoint();pt.x=e.clientX;pt.y=e.clientY;return pt.matrixTransform(svg.getScreenCTM().inverse());}
+
+/* ---------- search ---------- */
+const DIST_TYPES={all:"全部",fav:"想去清单",food:"餐厅",sight:"景点",transit:"车站机场"};
+function renderResults(){
+ chipRow($("#distChips"),DIST_TYPES,S.dist,"dist");
+ const q=norm(S.q);
+ const list=P.filter(p=>{
+  if(S.dist==="fav"&&!favs.has(p.id))return false;
+  if(S.dist==="food"&&p.kind!=="food")return false;
+  if(S.dist==="sight"&&p.kind!=="sight")return false;
+  if(S.dist==="transit"&&p.kind!=="transit")return false;
+  if(q&&!norm(p.name+" "+p.zh+" "+p.area+" "+(p.street||"")+" "+(p.order||"")).includes(q))return false;
+  return true;}).sort((a,b)=>hav(hotel,a)-hav(hotel,b));
+ if(!list.length){$("#results").innerHTML=`<p class="note" style="padding:12px 14px">${S.dist==="fav"&&!favs.size?"想去清单还是空的。在美食、景点卡片上点星号就能加进来。":"没找到。试试中文名或匈牙利名，或者用下面的“清单外的地方”。"}</p>`;return;}
+ $("#results").innerHTML=list.map(p=>{const d=hav(hotel,p),a=advise(d);
+  return `<button class="row ${a.cls}" type="button" data-onmap="${p.id}"><span class="rn">${esc(p.zh)}<small>${esc(p.name)}</small></span><span class="rd">${fmtD(d)}<small>${a.label}</small></span></button>`}).join("");
+}
+
+/* ---------- tabs ---------- */
+function setTab(t){
+ S.tab=t;store.set("bud-tab",t);
+ document.querySelectorAll(".tabbtn").forEach(b=>b.setAttribute("aria-selected",b.dataset.tab===t));
+ ["food","sights","dist","go","notes"].forEach(k=>$("#tab-"+k).hidden=k!==t);
+ window.scrollTo(0,0);
+}
+function renderAll(){renderHotel();renderFood();renderSights();renderMap();renderResults();}
+
+/* ---------- events ---------- */
+document.addEventListener("click",e=>{
+ const t=e.target.closest("button");
+ if(!t)return;
+ if(t.dataset.tab){setTab(t.dataset.tab);return;}
+ if(t.id==="hotelChip"){setTab("dist");return;}
+ if(t.dataset.food){S.food=t.dataset.food;renderFood();return;}
+ if(t.dataset.sight){S.sight=t.dataset.sight;renderSights();return;}
+ if(t.dataset.dist){S.dist=t.dataset.dist;renderResults();return;}
+ if(t.dataset.fav){toggleFav(t.dataset.fav);return;}
+ if(t.dataset.onmap){S.sel=t.dataset.onmap;S.pending=null;if(S.tab!=="dist")setTab("dist");renderMap();$("#map").scrollIntoView({behavior:"smooth",block:"center"});return;}
+ if(t.dataset.preset){const p=PRESETS[+t.dataset.preset];setHotel({lat:p.lat,lng:p.lng,label:p.label+"（大致位置）"},`已设为“${p.label}”的大致位置。订好酒店后再换成准确坐标。`);return;}
+ if(t.dataset.jump){document.getElementById(t.dataset.jump).scrollIntoView({behavior:"smooth",block:"start"});return;}
+ if(t.dataset.copy){const v=t.dataset.copy;const done=()=>{t.textContent="已复制";setTimeout(()=>t.textContent="复制",1500)};
+  try{navigator.clipboard.writeText(v).then(done,()=>selectNear(t));}catch(err){selectNear(t);}return;}
+ if(t.id==="hotelSave"){
+  const raw=$("#hotelInput").value,c=parseCoords(raw);
+  if(!c){showMsg(parseError(raw),"err");return;}
+  setHotel({lat:c.lat,lng:c.lng,label:$("#hotelLabel").value.trim()||"我的酒店"});return;}
+ if(t.id==="pendOk"){const p=S.pending;S.pending=null;setHotel({lat:p.lat,lng:p.lng,label:"地图点选位置"},"已把酒店设在你点的位置。示意图有误差，订好酒店后建议换成准确坐标。");return;}
+ if(t.id==="pendNo"){S.pending=null;renderMap();return;}
+ if(t.id==="customGo"){
+  const raw=$("#customInput").value,c=parseCoords(raw),o=$("#customOut");
+  if(!c){o.innerHTML=`<div class="msg err">${esc(parseError(raw))}</div>`;return;}
+  S.sel=c;S.pending=null;o.innerHTML="";renderMap();$("#map").scrollIntoView({behavior:"smooth",block:"center"});return;}
+});
+function selectNear(btn){const pn=btn.parentElement.querySelector(".pn");if(!pn)return;const r=document.createRange();r.selectNodeContents(pn);const s=getSelection();s.removeAllRanges();s.addRange(r);btn.textContent="已选中，可长按复制";}
+
+$("#map").addEventListener("click",e=>{
+ const g=e.target.closest("[data-id]");
+ if(g){S.sel=g.dataset.id;S.pending=null;renderMap();return;}
+ const p=svgPoint(e);
+ S.pending={lat:MAP.lat0-p.y/MAP.H*(MAP.lat0-MAP.lat1),lng:MAP.lng0+p.x/MAP.W*(MAP.lng1-MAP.lng0)};renderMap();
+});
+$("#foodNear").addEventListener("change",e=>{S.foodNear=e.target.checked;renderFood();});
+$("#sightNear").addEventListener("change",e=>{S.sightNear=e.target.checked;renderSights();});
+$("#q").addEventListener("input",e=>{S.q=e.target.value;renderResults();});
+
+/* ---------- offline (PWA) ---------- */
+function offlineStatus(text,kind){const el=$("#offlineStatus");if(el){el.textContent=text;el.className="msg "+kind;}}
+(function(){
+ const standalone=(window.matchMedia&&matchMedia("(display-mode: standalone)").matches)||navigator.standalone===true;
+ if(!("serviceWorker" in navigator)){offlineStatus("这个浏览器不能离线保存。请用 iPhone 的 Safari 或安卓的 Chrome 打开。","err");return;}
+ navigator.serviceWorker.register("./sw.js")
+  .then(()=>navigator.serviceWorker.ready)
+  .then(()=>offlineStatus(standalone?"已保存到手机，没网也能打开。":"已保存。添加到主屏幕后，从图标打开一次，就可以离线使用。","ok"))
+  .catch(()=>offlineStatus("离线保存没成功。请确认是用 Safari 或 Chrome 打开的 https 网址。","err"));
+})();
+
+/* ---------- boot ---------- */
+setTab(S.tab);
+renderAll();
+</script>
+
+</body>
+</html>
