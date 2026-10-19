@@ -243,6 +243,13 @@ nav.tabs{position:fixed;left:0;right:0;bottom:0;z-index:25;background:var(--surf
 .t10 .bd{display:flex;flex-direction:column;gap:8px;min-width:0}
 .trap{border-left:3px solid var(--bad);padding:4px 10px;background:color-mix(in srgb,var(--bad) 7%,var(--surface));border-radius:0 8px 8px 0;font-size:14px}
 .trap b{color:var(--bad)}
+
+.lounge{display:grid;grid-template-columns:1fr auto;gap:2px 10px;padding:10px 0;border-top:1px solid var(--line)}
+.lounge:first-of-type{border-top:0}
+.lounge b{font-size:15px}
+.lounge .lt{font-family:var(--f-sign);font-weight:700;font-size:13px;letter-spacing:.04em;padding:2px 8px;border-radius:6px;background:var(--surface-2);white-space:nowrap;align-self:start}
+.lounge .lt.go{background:color-mix(in srgb,var(--blue) 16%,transparent);color:var(--blue)}
+.lounge span.ld{grid-column:1/-1;font-size:13.5px;color:var(--muted)}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
@@ -387,6 +394,22 @@ nav.tabs{position:fixed;left:0;right:0;bottom:0;z-index:25;background:var(--surf
       <li><b>最方便：100E 机场快线</b>，日夜运行，到 Kálvin tér、Astoria、Deák Ferenc tér，约 40 分钟。票价 2,500 Ft，可以在车上刷卡买。</li>
       <li><b>最省：200E 公交</b> 到 Kőbánya-Kispest，换地铁 <span class="line l3">M3</span>。200E 可以用普通票，换地铁要再用一张票（时间票或通票除外）。</li>
       <li><b>叫车</b>：Bolt、Uber 或 Főtaxi，到市中心一般 12,000–15,000 Ft，看路况。不要在出口跟主动揽客的人走。</li>
+    </ul>
+  </div>
+
+  <div class="panel" id="go-lounge">
+    <h3>机场贵宾室（Priority Pass）</h3>
+    <p><b>可以用。</b>布达佩斯机场只有 2 号航站楼在用，Priority Pass 官网列了 4 家贵宾室，都在安检之后。</p>
+    <div>
+      <div class="lounge"><b>SkyCourt Lounge</b><span class="lt go">所有航班</span><span class="ld">2 号航站楼 SkyCourt 大厅，安检后上夹层，在美食广场上面，还没分申根/非申根。4:30–21:00，最多待 2 小时。</span></div>
+      <div class="lounge"><b>Plaza Premium Lounge</b><span class="lt go">回美国用这家</span><span class="ld">2B 非申根区，过了出境护照检查后，在出发层夹层，靠近 B 登机口。5:00–23:00。</span></div>
+      <div class="lounge"><b>Platinum Lounge（非申根）</b><span class="lt go">回美国可用</span><span class="ld">2B 非申根区，在 B7 登机口上面。5:00–22:00。</span></div>
+      <div class="lounge"><b>Platinum Lounge（申根）</b><span class="lt">去欧洲其他国家</span><span class="ld">2A 申根区，A8 登机口对面。5:00–20:00。</span></div>
+    </div>
+    <ul>
+      <li><b>飞回美国</b>是非申根航班，要先过出境护照检查，进 2B 后用 Plaza Premium 或 Platinum（非申根）。时间宽裕的话，过护照检查前也可以先去 SkyCourt。</li>
+      <li><b>飞往其他申根国家</b>（如布拉格、维也纳）在 2A，用 Platinum（申根）或 SkyCourt。</li>
+      <li>所有贵宾室最晚 23:00 关门，没有通宵的。营业时间和是否满员，出发当天在 Priority Pass App 里再看一次。</li>
     </ul>
   </div>
 
@@ -559,6 +582,7 @@ nav.tabs{position:fixed;left:0;right:0;bottom:0;z-index:25;background:var(--surf
   <div class="panel" id="n-check">
     <h3>出发前请再核对</h3>
     <ul>
+      <li>机场贵宾室：有一个第三方页面显示 SkyCourt Lounge “临时关闭”，Priority Pass 官网没有显示关闭。出发当天以 Priority Pass App 为准。</li>
       <li>国会大厦、温泉、渔人堡、圣伊什特万大教堂的价格来自 2026 年的资料，以官网为准。</li>
       <li>马加什教堂 1,600 Ft、城堡缆车往返 5,000 Ft 这两个价格可能已经过时；犹太大会堂的票价没有查到可靠数字。</li>
       <li>鲁达什温泉的男女专场时间各来源说法不一致。</li>
